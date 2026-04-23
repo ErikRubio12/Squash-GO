@@ -17,6 +17,7 @@ class SquashGoAndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("androidx-lifecycle-viewmodelCompose").get())
                 add("implementation", libs.findLibrary("androidx-lifecycle-runtimeCompose").get())
                 add("implementation", libs.findLibrary("navigation-compose").get())
+                add("implementation", libs.findLibrary("kotlinx-coroutines-core").get())
             }
         }
     }

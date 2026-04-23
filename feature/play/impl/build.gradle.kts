@@ -9,4 +9,5 @@ android {
 dependencies {
     implementation(projects.feature.play.api)
     implementation(projects.core.domain)
+    implementation(projects.core.auth)
 }

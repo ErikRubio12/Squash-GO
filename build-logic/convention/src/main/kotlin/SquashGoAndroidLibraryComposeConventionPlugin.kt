@@ -13,6 +13,7 @@ class SquashGoAndroidLibraryComposeConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("compose-runtime").get())
                 add("implementation", libs.findLibrary("compose-foundation").get())
                 add("implementation", libs.findLibrary("compose-material3").get())
+                add("implementation", libs.findLibrary("compose-material-iconsCore").get())
                 add("implementation", libs.findLibrary("compose-ui").get())
                 add("implementation", libs.findLibrary("compose-uiToolingPreview").get())
                 add("debugImplementation", libs.findLibrary("compose-uiTooling").get())
