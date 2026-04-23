@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common -->
+    <string name="play_back">Back</string>
+    <string name="play_retry">Retry</string>
+    <string name="play_cancel">Cancel</string>
+    <string name="play_error_generic">Something went wrong. Please try again.</string>
+    <string name="play_error_not_authenticated">Your session expired. Please sign in again.</string>
+    <string name="play_calibrating">Calibrating</string>
+    <string name="play_elo_format">%1$d Elo</string>
+    <string name="play_tier_format">%1$s · %2$d Elo</string>
+
+    <!-- Match type -->
+    <string name="play_match_type_casual">Casual</string>
+    <string name="play_match_type_ranked">Ranked</string>
+
+    <!-- Challenge status chip -->
+    <string name="play_status_pending">Pending</string>
+    <string name="play_status_accepted">Accepted</string>
+    <string name="play_status_declined">Declined</string>
+    <string name="play_status_cancelled">Cancelled</string>
+    <string name="play_status_expired">Expired</string>
+    <string name="play_status_completed">Completed</string>
+
+    <!-- Challenge create -->
+    <string name="challenge_create_title">Send Challenge</string>
+    <string name="challenge_create_you_label">You</string>
+    <string name="challenge_create_opponent_label">Opponent</string>
+    <string name="challenge_create_vs">vs</string>
+    <string name="challenge_create_match_type_label">Match type</string>
+    <string name="challenge_create_ranked_hint">Ranked matches affect your Elo.</string>
+    <string name="challenge_create_casual_hint">Casual matches are recorded but don\'t affect rating.</string>
+    <string name="challenge_create_message_label">Message (optional)</string>
+    <string name="challenge_create_message_counter">%1$d / %2$d</string>
+    <string name="challenge_create_send">Send Challenge</string>
+    <string name="challenge_create_sending">Sending&#8230;</string>
+    <string name="challenge_create_error_network">Couldn\'t send the challenge. Check your connection and try again.</string>
+
+    <!-- Challenges list -->
+    <string name="challenges_title">Challenges</string>
+    <string name="challenges_tab_incoming">Incoming</string>
+    <string name="challenges_tab_outgoing">Outgoing</string>
+    <string name="challenges_empty_incoming">No incoming challenges yet.</string>
+    <string name="challenges_empty_outgoing">You haven\'t sent any challenges yet.</string>
+    <string name="challenges_outgoing_match_in_progress">Match in progress — result coming soon</string>
+    <string name="challenges_cancel">Cancel challenge</string>
+    <string name="challenges_cancel_confirm_title">Cancel this challenge?</string>
+    <string name="challenges_cancel_confirm_body">The other player won\'t be able to accept it anymore.</string>
+    <string name="challenges_cancel_confirm_yes">Yes, cancel</string>
+    <string name="challenges_cancel_confirm_no">Keep it</string>
+    <string name="challenges_cancel_error">Couldn\'t cancel the challenge. Please try again.</string>
+    <string name="challenges_unknown_player">Unknown player</string>
+
+    <!-- Challenge detail -->
+    <string name="challenge_detail_title">Challenge</string>
+    <string name="challenge_detail_from">From</string>
+    <string name="challenge_detail_message">Message</string>
+    <string name="challenge_detail_no_message">No message</string>
+    <string name="challenge_detail_accept">Accept</string>
+    <string name="challenge_detail_decline">Decline</string>
+    <string name="challenge_detail_expires_today">Expires today</string>
+    <string name="challenge_detail_expires_soon">Expires within an hour</string>
+    <string name="challenge_detail_action_error">Couldn\'t update the challenge. Please try again.</string>
+    <plurals name="challenge_detail_expires_in_days">
+        <item quantity="one">Expires in %1$d day</item>
+        <item quantity="other">Expires in %1$d days</item>
+    </plurals>
+    <plurals name="challenge_detail_expires_in_hours">
+        <item quantity="one">Expires in %1$d hour</item>
+        <item quantity="other">Expires in %1$d hours</item>
+    </plurals>
+</resources>

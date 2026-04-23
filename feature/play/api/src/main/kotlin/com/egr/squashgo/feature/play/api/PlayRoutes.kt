@@ -9,6 +9,9 @@ data class ChallengeCreateRoute(val challengedId: String, val courtId: String? =
 object ChallengesRoute
 
 @Serializable
+data class ChallengeDetailRoute(val challengeId: String)
+
+@Serializable
 data class MatchResultRoute(val matchId: String)
 
 @Serializable

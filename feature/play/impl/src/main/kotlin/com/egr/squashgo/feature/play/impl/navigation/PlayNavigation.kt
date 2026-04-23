@@ -5,10 +5,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.egr.squashgo.feature.play.api.ChallengeCreateRoute
+import com.egr.squashgo.feature.play.api.ChallengeDetailRoute
 import com.egr.squashgo.feature.play.api.ChallengesRoute
 import com.egr.squashgo.feature.play.api.MatchConfirmRoute
 import com.egr.squashgo.feature.play.api.MatchResultRoute
 import com.egr.squashgo.feature.play.impl.ChallengeCreateScreen
+import com.egr.squashgo.feature.play.impl.ChallengeDetailScreen
 import com.egr.squashgo.feature.play.impl.ChallengesScreen
 import com.egr.squashgo.feature.play.impl.MatchConfirmScreen
 import com.egr.squashgo.feature.play.impl.MatchResultScreen
@@ -32,6 +34,18 @@ fun NavGraphBuilder.playGraph(navController: NavController) {
             onMatchConfirm = { matchId ->
                 navController.navigate(MatchConfirmRoute(matchId))
             },
+            onIncomingTap = { challengeId ->
+                navController.navigate(ChallengeDetailRoute(challengeId))
+            },
+            onBack = { navController.popBackStack() },
+        )
+    }
+
+    composable<ChallengeDetailRoute> { backStackEntry ->
+        val route = backStackEntry.toRoute<ChallengeDetailRoute>()
+        ChallengeDetailScreen(
+            challengeId = route.challengeId,
+            onDone = { navController.popBackStack() },
             onBack = { navController.popBackStack() },
         )
     }
