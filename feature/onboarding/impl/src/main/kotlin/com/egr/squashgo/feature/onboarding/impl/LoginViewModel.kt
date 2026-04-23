@@ -1,8 +1,10 @@
 package com.egr.squashgo.feature.onboarding.impl
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.auth.SessionManager
+import com.egr.squashgo.core.domain.exception.AuthException
 import com.egr.squashgo.core.domain.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,42 +26,67 @@ class LoginViewModel @Inject constructor(
 
     fun onEmailChange(value: String) {
         _email.value = value
+        if (_uiState.value is LoginUiState.Error) {
+            _uiState.value = LoginUiState.Idle
+        }
     }
 
     fun sendMagicLink() {
         val emailValue = _email.value.trim()
         if (emailValue.isBlank()) return
+        if (!EMAIL_REGEX.matches(emailValue)) {
+            _uiState.value = LoginUiState.Error(LoginError.InvalidEmail)
+            return
+        }
 
         viewModelScope.launch {
             _uiState.value = LoginUiState.SendingLink
             try {
                 authRepository.sendMagicLink(emailValue, REDIRECT_URL)
                 _uiState.value = LoginUiState.LinkSent
-            } catch (e: Exception) {
-                _uiState.value = LoginUiState.Error(e.message ?: "Failed to send magic link")
+            } catch (e: AuthException) {
+                Log.e(TAG, "sendMagicLink failed", e)
+                _uiState.value = LoginUiState.Error(e.toLoginError())
             }
         }
     }
 
-    fun handleAccessToken(accessToken: String) {
-        sessionManager.updateSession(accessToken, userId = "")
-        // Decode user ID from JWT payload
-        try {
-            val payload = accessToken.split(".")[1]
-            val decoded = android.util.Base64.decode(payload, android.util.Base64.URL_SAFE)
-            val json = String(decoded)
-            val sub = Regex("\"sub\"\\s*:\\s*\"([^\"]+)\"").find(json)?.groupValues?.get(1)
-            if (sub != null) {
-                sessionManager.updateSession(accessToken, sub)
-            }
-        } catch (_: Exception) {
-            // Token is still set, userId will be empty
-        }
+    fun handleDeepLinkTokens(
+        accessToken: String,
+        refreshToken: String,
+        expiresIn: Long,
+    ) {
+        val userId = extractUserIdFromJwt(accessToken).orEmpty()
+        sessionManager.updateSession(
+            accessToken = accessToken,
+            refreshToken = refreshToken,
+            userId = userId,
+            expiresInSeconds = expiresIn,
+        )
         _uiState.value = LoginUiState.Success
+    }
+
+    private fun extractUserIdFromJwt(accessToken: String): String? = try {
+        val payload = accessToken.split(".")[1]
+        val decoded = android.util.Base64.decode(payload, android.util.Base64.URL_SAFE)
+        val json = String(decoded)
+        Regex("\"sub\"\\s*:\\s*\"([^\"]+)\"").find(json)?.groupValues?.get(1)
+    } catch (_: Exception) {
+        null
+    }
+
+    private fun AuthException.toLoginError(): LoginError = when (this) {
+        is AuthException.InvalidEmail -> LoginError.InvalidEmail
+        is AuthException.RateLimited -> LoginError.RateLimited
+        is AuthException.Network -> LoginError.Network
+        is AuthException.Server -> LoginError.Server
+        is AuthException.Unknown -> LoginError.Unknown
     }
 
     companion object {
         const val REDIRECT_URL = "squashgo://auth-callback"
+        private const val TAG = "LoginViewModel"
+        private val EMAIL_REGEX = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")
     }
 }
 
@@ -69,5 +96,13 @@ sealed interface LoginUiState {
     data object LinkSent : LoginUiState
     data object Verifying : LoginUiState
     data object Success : LoginUiState
-    data class Error(val message: String) : LoginUiState
+    data class Error(val error: LoginError) : LoginUiState
+}
+
+enum class LoginError {
+    InvalidEmail,
+    Network,
+    RateLimited,
+    Server,
+    Unknown,
 }

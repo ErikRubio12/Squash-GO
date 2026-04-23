@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_app_name">Squash &amp; Go</string>
+    <string name="login_tagline">Find rivals. Play matches. Climb the ranks.</string>
+    <string name="login_email_label">Email address</string>
+    <string name="login_send_magic_link">Send Magic Link</string>
+    <string name="login_check_email_title">Check your email</string>
+    <string name="login_check_email_body">We sent a login link to %1$s.\nTap the link in the email to sign in.</string>
+    <string name="login_resend_link">Resend Link</string>
+    <string name="login_signing_in">Signing you in&#8230;</string>
+
+    <string name="login_error_invalid_email">Please enter a valid email address.</string>
+    <string name="login_error_network">No internet connection. Check your network and try again.</string>
+    <string name="login_error_rate_limited">Too many attempts. Please wait a moment and try again.</string>
+    <string name="login_error_server">We couldn\'t send the link right now. Please try again in a few minutes.</string>
+    <string name="login_error_unknown">Something went wrong. Please try again.</string>
+
+    <!-- Profile setup -->
+    <string name="profile_setup_title">What should we call you?</string>
+    <string name="profile_setup_subtitle">This is the name other players will see when you challenge them.</string>
+    <string name="profile_setup_display_name_label">Display name</string>
+    <string name="profile_setup_display_name_hint">Between %1$d and %2$d characters</string>
+    <string name="profile_setup_continue">Continue</string>
+    <string name="profile_setup_retry">Retry</string>
+    <string name="profile_setup_error_invalid_length">Your display name doesn\'t fit the required length.</string>
+    <string name="profile_setup_error_network">Couldn\'t save your profile. Check your connection and try again.</string>
+    <string name="profile_setup_error_not_authenticated">Your session expired. Please sign in again.</string>
+
+    <!-- Home court picker -->
+    <string name="home_court_title">Pick your home courts</string>
+    <string name="home_court_subtitle">Choose up to %1$d courts where you regularly play. We\'ll use these to match you with nearby rivals.</string>
+    <string name="home_court_search_label">Search courts</string>
+    <string name="home_court_selection_count">%1$d of %2$d selected</string>
+    <string name="home_court_primary_chip">Primary</string>
+    <string name="home_court_make_primary">Set as primary</string>
+    <string name="home_court_empty">No courts match your search.</string>
+    <string name="home_court_save">Save and continue</string>
+    <string name="home_court_retry">Retry</string>
+    <string name="home_court_error_min_not_met">Pick at least one home court to continue.</string>
+    <string name="home_court_error_network">Something went wrong. Please try again.</string>
+    <string name="home_court_error_not_authenticated">Your session expired. Please sign in again.</string>
+</resources>
