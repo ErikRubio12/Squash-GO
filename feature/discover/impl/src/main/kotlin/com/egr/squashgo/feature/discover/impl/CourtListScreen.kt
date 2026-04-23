@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -40,7 +41,7 @@ fun CourtListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Squash & Go") },
+                title = { Text(stringResource(R.string.court_list_app_name)) },
             )
         },
     ) { padding ->
@@ -51,7 +52,7 @@ fun CourtListScreen(
                 .padding(16.dp),
         ) {
             Text(
-                text = "Nearby Courts",
+                text = stringResource(R.string.court_list_section_title),
                 style = MaterialTheme.typography.titleLarge,
             )
 
@@ -69,7 +70,7 @@ fun CourtListScreen(
 
                 is CourtListUiState.Empty -> {
                     Text(
-                        text = "No courts found",
+                        text = stringResource(R.string.court_list_empty),
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(top = 16.dp),
                     )
@@ -81,12 +82,12 @@ fun CourtListScreen(
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         Text(
-                            text = state.message,
+                            text = stringResource(R.string.court_list_error_generic),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.error,
                         )
                         Button(onClick = { viewModel.loadCourts() }) {
-                            Text("Retry")
+                            Text(stringResource(R.string.court_list_retry))
                         }
                     }
                 }

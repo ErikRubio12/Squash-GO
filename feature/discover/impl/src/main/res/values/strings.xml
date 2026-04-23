@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Court list -->
+    <string name="court_list_app_name">Squash &amp; Go</string>
+    <string name="court_list_section_title">Nearby Courts</string>
+    <string name="court_list_empty">No courts found</string>
+    <string name="court_list_retry">Retry</string>
+    <string name="court_list_error_generic">We couldn\'t load courts right now. Please try again.</string>
+
+    <!-- Court detail -->
+    <string name="court_detail_title">Court</string>
+    <string name="court_detail_back">Back</string>
+    <string name="court_detail_retry">Retry</string>
+    <string name="court_detail_no_players">No players yet</string>
+    <string name="court_detail_empty_invite">Be the first — invite a friend to set this as their home court.</string>
+    <string name="court_detail_unnamed_player">Unnamed player</string>
+    <string name="court_detail_error_generic">We couldn\'t load this court. Please try again.</string>
+
+    <plurals name="court_detail_players_count">
+        <item quantity="one">Player (%1$d)</item>
+        <item quantity="other">Players (%1$d)</item>
+    </plurals>
+</resources>
