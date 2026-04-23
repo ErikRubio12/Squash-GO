@@ -44,4 +44,20 @@ class PlayerApi(private val client: HttpClient) {
             parameter("player_courts.court_id", "eq.$courtId")
         }.body()
     }
+
+    suspend fun getPlayersByIds(playerIds: List<String>): List<PlayerDto> {
+        if (playerIds.isEmpty()) return emptyList()
+        return client.get("/rest/v1/players") {
+            parameter("select", "*")
+            parameter("id", "in.(${playerIds.joinToString(",")})")
+        }.body()
+    }
+
+    suspend fun getRatingsByPlayerIds(playerIds: List<String>): List<RatingDto> {
+        if (playerIds.isEmpty()) return emptyList()
+        return client.get("/rest/v1/ratings") {
+            parameter("select", "*")
+            parameter("player_id", "in.(${playerIds.joinToString(",")})")
+        }.body()
+    }
 }
