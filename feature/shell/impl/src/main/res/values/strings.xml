@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shell_tab_discover">Discover</string>
+    <string name="shell_tab_play">Play</string>
+    <string name="shell_tab_activity">Activity</string>
+    <string name="shell_tab_profile">Profile</string>
+
+    <string name="shell_tab_discover_cd">Discover courts</string>
+    <string name="shell_tab_play_cd">Play and challenges</string>
+    <string name="shell_tab_activity_cd">Match activity</string>
+    <string name="shell_tab_profile_cd">Your profile</string>
+</resources>

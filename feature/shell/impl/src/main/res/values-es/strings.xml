@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shell_tab_discover">Descubre</string>
+    <string name="shell_tab_play">Juega</string>
+    <string name="shell_tab_activity">Actividad</string>
+    <string name="shell_tab_profile">Perfil</string>
+
+    <string name="shell_tab_discover_cd">Descubrir canchas</string>
+    <string name="shell_tab_play_cd">Juega y retos</string>
+    <string name="shell_tab_activity_cd">Actividad de partidos</string>
+    <string name="shell_tab_profile_cd">Tu perfil</string>
+</resources>

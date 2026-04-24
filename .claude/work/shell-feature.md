@@ -6,7 +6,14 @@ Working doc for the MainShell bottom-nav feature. Delete when shipped.
 
 Add a bottom NavigationBar shell for post-login top-level destinations (Discover, Play, Activity, Profile), implement the Activity screen (currently stub), and add Spanish locale support across all existing strings.
 
-## Status: NOT started — plan locked with Erik, ready to execute step by step
+## Status: Steps 1 & 2 done, ready for step 3
+
+- Step 1 ✅ committed (`3778e69`) and pushed — `:feature:shell:api` with `TopLevelDestination` sealed interface
+- Step 2 ✅ committed locally (not pushed yet) — `:feature:shell:impl` with `MainShellScaffold`, strings EN+ES, `TopLevelDestination` wired end-to-end into the tab spec so adding a 5th tab will force a compiler error until the `when` is updated
+- Icons: used `LocationOn` / `PlayArrow` / `AutoMirrored.List` / `Person` from `material-icons-core` (deviation from plan which asked for `SportsBaseball` + `History` — Erik chose not to add `material-icons-extended` for MVP)
+- Not yet wired: `MainShellScaffold` is unused; `SquashGoApp.kt` still runs the raw `NavHost` without the scaffold wrapper — that's step 3
+
+## Status (original): NOT started — plan locked with Erik, ready to execute step by step
 
 - Branch: `develop`, uncommitted changes from `challenges-feature.md` still pending (Challenges feature implementation-complete but not wired to entry points)
 - After shell lands, Challenges gets its entry point via the Play tab automatically
