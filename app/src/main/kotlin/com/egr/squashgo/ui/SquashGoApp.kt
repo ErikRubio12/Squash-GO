@@ -1,40 +1,80 @@
 package com.egr.squashgo.ui
 
 import android.net.Uri
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.egr.squashgo.core.designsystem.theme.SquashGoTheme
 import com.egr.squashgo.feature.discover.api.CourtListRoute
 import com.egr.squashgo.feature.discover.impl.navigation.discoverGraph
 import com.egr.squashgo.feature.activity.impl.navigation.activityGraph
+import com.egr.squashgo.feature.onboarding.api.HomeCourtPickerRoute
 import com.egr.squashgo.feature.onboarding.api.LoginRoute
+import com.egr.squashgo.feature.onboarding.api.ProfileSetupRoute
 import com.egr.squashgo.feature.onboarding.impl.navigation.onboardingGraph
 import com.egr.squashgo.feature.play.impl.navigation.playGraph
 import com.egr.squashgo.feature.profile.impl.navigation.profileGraph
 
 @Composable
-fun SquashGoApp(deepLinkUri: Uri? = null) {
+fun SquashGoApp(
+    deepLinkUri: Uri? = null,
+    bootstrapViewModel: AppBootstrapViewModel = hiltViewModel(),
+) {
     SquashGoTheme {
-        val navController = rememberNavController()
+        val bootstrapState by bootstrapViewModel.state.collectAsStateWithLifecycle()
 
-        NavHost(
-            navController = navController,
-            startDestination = LoginRoute,
-        ) {
-            onboardingGraph(
+        when (bootstrapState) {
+            BootstrapState.Loading -> LoadingScreen()
+            BootstrapState.LoggedIn -> AppNavGraph(
                 deepLinkUri = deepLinkUri,
-                onLoginSuccess = {
-                    navController.navigate(CourtListRoute) {
-                        popUpTo(LoginRoute) { inclusive = true }
-                    }
-                },
+                startDestination = ProfileSetupRoute,
             )
-
-            discoverGraph(navController)
-            playGraph(navController)
-            profileGraph(navController)
-            activityGraph(navController)
+            BootstrapState.LoggedOut -> AppNavGraph(
+                deepLinkUri = deepLinkUri,
+                startDestination = LoginRoute,
+            )
         }
+    }
+}
+
+@Composable
+private fun AppNavGraph(
+    deepLinkUri: Uri?,
+    startDestination: Any,
+) {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = startDestination,
+    ) {
+        onboardingGraph(
+            navController = navController,
+            deepLinkUri = deepLinkUri,
+            onOnboardingComplete = {
+                navController.navigate(CourtListRoute) {
+                    popUpTo(HomeCourtPickerRoute) { inclusive = true }
+                }
+            },
+        )
+
+        discoverGraph(navController)
+        playGraph(navController)
+        profileGraph(navController)
+        activityGraph(navController)
+    }
+}
+
+@Composable
+private fun LoadingScreen() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
     }
 }
