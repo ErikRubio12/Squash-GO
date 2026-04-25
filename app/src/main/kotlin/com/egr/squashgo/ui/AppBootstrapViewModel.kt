@@ -30,12 +30,12 @@ class AppBootstrapViewModel @Inject constructor(
     private fun bootstrap() {
         val refreshToken = sessionManager.refreshToken
         if (refreshToken.isNullOrBlank()) {
-            _state.value = BootstrapState.LoggedOut
+            _state.value = BootstrapState.NeedsLogin
             return
         }
 
         if (!sessionManager.isAccessTokenExpired()) {
-            _state.value = BootstrapState.LoggedIn
+            _state.value = loggedInState()
             return
         }
 
@@ -48,16 +48,19 @@ class AppBootstrapViewModel @Inject constructor(
                     userId = session.userId,
                     expiresInSeconds = session.expiresIn,
                 )
-                _state.value = BootstrapState.LoggedIn
+                _state.value = loggedInState()
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Throwable) {
                 Log.w(TAG, "refreshToken failed; clearing session", e)
                 sessionManager.clearSession()
-                _state.value = BootstrapState.LoggedOut
+                _state.value = BootstrapState.NeedsLogin
             }
         }
     }
+
+    private fun loggedInState(): BootstrapState =
+        if (sessionManager.isOnboarded) BootstrapState.Ready else BootstrapState.NeedsOnboarding
 
     private companion object {
         const val TAG = "AppBootstrap"

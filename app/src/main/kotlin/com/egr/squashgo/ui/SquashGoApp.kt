@@ -36,11 +36,15 @@ fun SquashGoApp(
 
         when (bootstrapState) {
             BootstrapState.Loading -> LoadingScreen()
-            BootstrapState.LoggedIn -> AppNavGraph(
+            BootstrapState.Ready -> AppNavGraph(
+                deepLinkUri = deepLinkUri,
+                startDestination = CourtListRoute,
+            )
+            BootstrapState.NeedsOnboarding -> AppNavGraph(
                 deepLinkUri = deepLinkUri,
                 startDestination = ProfileSetupRoute,
             )
-            BootstrapState.LoggedOut -> AppNavGraph(
+            BootstrapState.NeedsLogin -> AppNavGraph(
                 deepLinkUri = deepLinkUri,
                 startDestination = LoginRoute,
             )

@@ -2,6 +2,7 @@ package com.egr.squashgo.ui.model
 
 sealed interface BootstrapState {
     data object Loading : BootstrapState
-    data object LoggedIn : BootstrapState
-    data object LoggedOut : BootstrapState
+    data object NeedsLogin : BootstrapState
+    data object NeedsOnboarding : BootstrapState
+    data object Ready : BootstrapState
 }

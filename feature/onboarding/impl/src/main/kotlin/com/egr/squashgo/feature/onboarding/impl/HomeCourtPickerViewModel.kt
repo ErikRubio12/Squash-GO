@@ -97,6 +97,7 @@ class HomeCourtPickerViewModel @Inject constructor(
             _uiState.value = current.copy(isSaving = true, validationError = null)
             try {
                 playerRepository.setPlayerCourts(userId, ordered)
+                sessionManager.setOnboarded()
                 _uiState.value = HomeCourtPickerUiState.Saved
             } catch (e: CancellationException) {
                 throw e
@@ -121,6 +122,7 @@ class HomeCourtPickerViewModel @Inject constructor(
             try {
                 val existing = playerRepository.getPlayerCourts(userId)
                 if (existing.isNotEmpty()) {
+                    sessionManager.setOnboarded()
                     _uiState.value = HomeCourtPickerUiState.AlreadyComplete
                     return@launch
                 }
