@@ -37,7 +37,6 @@ fun NavGraphBuilder.playGraph(navController: NavController) {
             onIncomingTap = { challengeId ->
                 navController.navigate(ChallengeDetailRoute(challengeId))
             },
-            onBack = { navController.popBackStack() },
         )
     }
 

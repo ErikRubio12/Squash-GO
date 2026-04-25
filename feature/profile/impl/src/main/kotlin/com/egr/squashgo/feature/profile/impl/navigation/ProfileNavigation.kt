@@ -8,8 +8,6 @@ import com.egr.squashgo.feature.profile.impl.ProfileScreen
 
 fun NavGraphBuilder.profileGraph(navController: NavController) {
     composable<ProfileRoute> {
-        ProfileScreen(
-            onBack = { navController.popBackStack() },
-        )
+        ProfileScreen()
     }
 }
