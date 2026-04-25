@@ -1,8 +1,8 @@
 package com.egr.squashgo.data.network.repository
 
 import com.egr.squashgo.core.domain.repository.CourtRepository
-import com.egr.squashgo.core.domain.repository.CourtWithPlayers
-import com.egr.squashgo.core.domain.repository.PlayerWithRating
+import com.egr.squashgo.core.domain.repository.model.CourtWithPlayers
+import com.egr.squashgo.core.domain.repository.model.PlayerWithRating
 import com.egr.squashgo.core.model.Court
 import com.egr.squashgo.data.network.api.CourtApi
 import com.egr.squashgo.data.network.api.PlayerApi

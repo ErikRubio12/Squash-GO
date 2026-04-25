@@ -1,7 +1,7 @@
 package com.egr.squashgo.data.network.mapper
 
-import com.egr.squashgo.core.domain.repository.CourtWithPlayers
-import com.egr.squashgo.core.domain.repository.PlayerWithRating
+import com.egr.squashgo.core.domain.repository.model.CourtWithPlayers
+import com.egr.squashgo.core.domain.repository.model.PlayerWithRating
 import com.egr.squashgo.core.model.Court
 import com.egr.squashgo.core.model.Rating
 import com.egr.squashgo.data.network.dto.CourtDto

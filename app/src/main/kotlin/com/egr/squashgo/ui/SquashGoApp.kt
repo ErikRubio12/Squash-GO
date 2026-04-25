@@ -3,6 +3,7 @@ package com.egr.squashgo.ui
 import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,6 +23,8 @@ import com.egr.squashgo.feature.onboarding.api.ProfileSetupRoute
 import com.egr.squashgo.feature.onboarding.impl.navigation.onboardingGraph
 import com.egr.squashgo.feature.play.impl.navigation.playGraph
 import com.egr.squashgo.feature.profile.impl.navigation.profileGraph
+import com.egr.squashgo.feature.shell.impl.MainShellScaffold
+import com.egr.squashgo.ui.model.BootstrapState
 
 @Composable
 fun SquashGoApp(
@@ -51,24 +54,27 @@ private fun AppNavGraph(
     startDestination: Any,
 ) {
     val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = startDestination,
-    ) {
-        onboardingGraph(
+    MainShellScaffold(navController = navController) { padding ->
+        NavHost(
             navController = navController,
-            deepLinkUri = deepLinkUri,
-            onOnboardingComplete = {
-                navController.navigate(CourtListRoute) {
-                    popUpTo(HomeCourtPickerRoute) { inclusive = true }
-                }
-            },
-        )
+            startDestination = startDestination,
+            modifier = Modifier.padding(padding),
+        ) {
+            onboardingGraph(
+                navController = navController,
+                deepLinkUri = deepLinkUri,
+                onOnboardingComplete = {
+                    navController.navigate(CourtListRoute) {
+                        popUpTo(HomeCourtPickerRoute) { inclusive = true }
+                    }
+                },
+            )
 
-        discoverGraph(navController)
-        playGraph(navController)
-        profileGraph(navController)
-        activityGraph(navController)
+            discoverGraph(navController)
+            playGraph(navController)
+            profileGraph(navController)
+            activityGraph(navController)
+        }
     }
 }
 

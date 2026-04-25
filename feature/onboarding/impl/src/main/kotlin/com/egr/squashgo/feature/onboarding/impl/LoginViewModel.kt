@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.exception.AuthException
 import com.egr.squashgo.core.domain.repository.AuthRepository
+import com.egr.squashgo.feature.onboarding.impl.model.LoginError
+import com.egr.squashgo.feature.onboarding.impl.model.LoginUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -90,19 +92,3 @@ class LoginViewModel @Inject constructor(
     }
 }
 
-sealed interface LoginUiState {
-    data object Idle : LoginUiState
-    data object SendingLink : LoginUiState
-    data object LinkSent : LoginUiState
-    data object Verifying : LoginUiState
-    data object Success : LoginUiState
-    data class Error(val error: LoginError) : LoginUiState
-}
-
-enum class LoginError {
-    InvalidEmail,
-    Network,
-    RateLimited,
-    Server,
-    Unknown,
-}

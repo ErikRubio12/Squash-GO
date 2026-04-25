@@ -73,6 +73,7 @@ dependencies {
     implementation(projects.feature.play.api)
     implementation(projects.feature.profile.api)
     implementation(projects.feature.activity.api)
+    implementation(projects.feature.shell.api)
 
     // Feature Impls
     implementation(projects.feature.onboarding.impl)
@@ -80,4 +81,5 @@ dependencies {
     implementation(projects.feature.play.impl)
     implementation(projects.feature.profile.impl)
     implementation(projects.feature.activity.impl)
+    implementation(projects.feature.shell.impl)
 }

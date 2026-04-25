@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.PlayerRepository
 import com.egr.squashgo.core.model.Player
+import com.egr.squashgo.feature.onboarding.impl.model.ProfileSetupError
+import com.egr.squashgo.feature.onboarding.impl.model.ProfileSetupUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -98,17 +100,3 @@ class ProfileSetupViewModel @Inject constructor(
     }
 }
 
-sealed interface ProfileSetupUiState {
-    data object Loading : ProfileSetupUiState
-    data object Editing : ProfileSetupUiState
-    data object Saving : ProfileSetupUiState
-    data object Saved : ProfileSetupUiState
-    data object AlreadyComplete : ProfileSetupUiState
-    data class Error(val error: ProfileSetupError) : ProfileSetupUiState
-}
-
-enum class ProfileSetupError {
-    InvalidLength,
-    Network,
-    NotAuthenticated,
-}

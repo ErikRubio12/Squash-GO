@@ -6,8 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.ChallengeRepository
 import com.egr.squashgo.core.domain.repository.PlayerRepository
-import com.egr.squashgo.core.domain.repository.PlayerWithRating
 import com.egr.squashgo.core.model.Challenge
+import com.egr.squashgo.feature.play.impl.model.ChallengeDetailError
+import com.egr.squashgo.feature.play.impl.model.ChallengeDetailUiState
+import com.egr.squashgo.feature.play.impl.model.ExpiryDisplay
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -118,27 +120,3 @@ class ChallengeDetailViewModel @Inject constructor(
     }
 }
 
-sealed interface ExpiryDisplay {
-    data object WithinHour : ExpiryDisplay
-    data class Hours(val count: Int) : ExpiryDisplay
-    data class Days(val count: Int) : ExpiryDisplay
-}
-
-sealed interface ChallengeDetailUiState {
-    data object Loading : ChallengeDetailUiState
-    data class Ready(
-        val challenge: Challenge,
-        val challenger: PlayerWithRating,
-        val expiry: ExpiryDisplay,
-        val isActing: Boolean,
-        val actionError: Boolean,
-    ) : ChallengeDetailUiState
-    data object Done : ChallengeDetailUiState
-    data class Error(val error: ChallengeDetailError) : ChallengeDetailUiState
-}
-
-enum class ChallengeDetailError {
-    Network,
-    NotFound,
-    NotAuthenticated,
-}

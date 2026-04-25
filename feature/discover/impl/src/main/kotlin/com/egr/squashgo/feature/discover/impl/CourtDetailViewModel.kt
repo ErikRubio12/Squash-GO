@@ -5,8 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.CourtRepository
-import com.egr.squashgo.core.domain.repository.PlayerWithRating
-import com.egr.squashgo.core.model.Court
+import com.egr.squashgo.feature.discover.impl.model.CourtDetailUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -61,11 +60,3 @@ class CourtDetailViewModel @Inject constructor(
     }
 }
 
-sealed interface CourtDetailUiState {
-    data object Loading : CourtDetailUiState
-    data class Ready(
-        val court: Court,
-        val players: List<PlayerWithRating>,
-    ) : CourtDetailUiState
-    data object Error : CourtDetailUiState
-}

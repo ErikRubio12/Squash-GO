@@ -1,7 +1,7 @@
 package com.egr.squashgo.data.network.repository
 
 import com.egr.squashgo.core.domain.repository.PlayerRepository
-import com.egr.squashgo.core.domain.repository.PlayerWithRating
+import com.egr.squashgo.core.domain.repository.model.PlayerWithRating
 import com.egr.squashgo.core.model.Player
 import com.egr.squashgo.core.model.PlayerCourt
 import com.egr.squashgo.data.network.api.PlayerApi

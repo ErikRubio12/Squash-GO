@@ -74,6 +74,37 @@ Hilt modules use `@Provides` (not `@Binds`) for repository bindings since impls 
 - Feature routes: `Routes.kt` (in `:feature:<name>:api`)
 - Feature navigation: `*Navigation.kt` with `NavGraphBuilder.<feature>Graph()` extension
 
+## Code Organization — data classes in `model/` subpackages
+
+**Rule:** pure `data class`, `sealed interface`, `enum class`, and other type-only declarations MUST live in a `model/` subpackage inside their own layer. Classes that contain behavior (ViewModels, Screens, Repositories, Api classes, Mappers) keep only their own code — no co-located UI state, errors, rows, DTOs, etc.
+
+### Where each kind lives
+| Kind | Layer / module | Location |
+|---|---|---|
+| Domain entities (`Player`, `Court`, `Match`, `Rating`, enums) | `:core:model` | `core/model/.../` (already flat — this *is* the model package) |
+| Repository interface helpers (`PlayerWithRating`, domain result types) | `:core:domain` | `core/domain/.../repository/model/` |
+| UI state, UI errors, row/card presentation types, one-shot effects | `:feature:<name>:impl` | `feature/<name>/impl/.../model/` |
+| DTOs (`*Dto`) | `:data:network` | `data/network/.../dto/` (existing convention — keep) |
+| Mappers (`*Mapper`) | `:data:network` | `data/network/.../mapper/` (existing convention — keep) |
+| Route classes (`@Serializable`) | `:feature:<name>:api` | `feature/<name>/api/.../` (flat, it *is* the contract) |
+
+### Example: feature/impl
+
+```
+feature/activity/impl/.../
+├── MatchHistoryScreen.kt           # @Composable only
+├── MatchHistoryViewModel.kt        # @HiltViewModel only
+├── model/
+│   └── MatchHistoryUiState.kt      # sealed interface UiState, MatchRow, MatchHistoryError enum
+└── navigation/
+    └── ActivityNavigation.kt
+```
+
+**Why:** keeps ViewModels and Screens focused on behavior, makes state types greppable by name (`MatchHistoryUiState` vs scrolling through a 400-line VM), and prevents accidental coupling between presentation state and business logic.
+
+### Reusable Compose helpers
+Cross-feature Compose utilities (e.g. `currentLocale()`, domain-aware composables) live in `:core:ui` under a semantic subpackage (`core/ui/.../locale/`, `core/ui/.../match/`, etc.). The `squashgo.android.feature` convention plugin already adds `:core:ui` as an `implementation` dep.
+
 ## Domain Rules
 
 ### Challenge States

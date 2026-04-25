@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Court list -->
+    <string name="court_list_app_name">Squash &amp; Go</string>
+    <string name="court_list_section_title">Canchas cercanas</string>
+    <string name="court_list_empty">No se encontraron canchas</string>
+    <string name="court_list_retry">Reintentar</string>
+    <string name="court_list_error_generic">No pudimos cargar las canchas ahora. Inténtalo de nuevo.</string>
+
+    <!-- Court detail -->
+    <string name="court_detail_title">Cancha</string>
+    <string name="court_detail_back">Atrás</string>
+    <string name="court_detail_retry">Reintentar</string>
+    <string name="court_detail_no_players">Aún no hay jugadores</string>
+    <string name="court_detail_empty_invite">Sé el primero — invita a un amigo a marcar esta como su cancha habitual.</string>
+    <string name="court_detail_unnamed_player">Jugador sin nombre</string>
+    <string name="court_detail_error_generic">No pudimos cargar esta cancha. Inténtalo de nuevo.</string>
+
+    <plurals name="court_detail_players_count">
+        <item quantity="one">Jugador (%1$d)</item>
+        <item quantity="other">Jugadores (%1$d)</item>
+    </plurals>
+</resources>

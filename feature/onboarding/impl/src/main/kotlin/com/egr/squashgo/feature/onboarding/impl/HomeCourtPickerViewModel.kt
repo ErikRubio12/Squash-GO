@@ -7,6 +7,8 @@ import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.CourtRepository
 import com.egr.squashgo.core.domain.repository.PlayerRepository
 import com.egr.squashgo.core.model.Court
+import com.egr.squashgo.feature.onboarding.impl.model.HomeCourtPickerError
+import com.egr.squashgo.feature.onboarding.impl.model.HomeCourtPickerUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -158,22 +160,3 @@ class HomeCourtPickerViewModel @Inject constructor(
     }
 }
 
-sealed interface HomeCourtPickerUiState {
-    data object Loading : HomeCourtPickerUiState
-    data class Ready(
-        val filteredCourts: List<Court>,
-        val selectedCourtIds: List<String>,
-        val primaryCourtId: String?,
-        val isSaving: Boolean,
-        val validationError: HomeCourtPickerError?,
-    ) : HomeCourtPickerUiState
-    data object Saved : HomeCourtPickerUiState
-    data object AlreadyComplete : HomeCourtPickerUiState
-    data class Error(val error: HomeCourtPickerError) : HomeCourtPickerUiState
-}
-
-enum class HomeCourtPickerError {
-    MinNotMet,
-    Network,
-    NotAuthenticated,
-}

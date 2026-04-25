@@ -1,8 +1,8 @@
 package com.egr.squashgo.core.domain.repository
 
+import com.egr.squashgo.core.domain.repository.model.PlayerWithRating
 import com.egr.squashgo.core.model.Player
 import com.egr.squashgo.core.model.PlayerCourt
-import com.egr.squashgo.core.model.Rating
 
 interface PlayerRepository {
     suspend fun getPlayer(playerId: String): Player
@@ -12,8 +12,3 @@ interface PlayerRepository {
     suspend fun getPlayerCourts(playerId: String): List<PlayerCourt>
     suspend fun setPlayerCourts(playerId: String, courtIds: List<String>)
 }
-
-data class PlayerWithRating(
-    val player: Player,
-    val rating: Rating,
-)

@@ -6,8 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.ChallengeRepository
 import com.egr.squashgo.core.domain.repository.PlayerRepository
-import com.egr.squashgo.core.domain.repository.PlayerWithRating
-import com.egr.squashgo.core.model.Challenge
+import com.egr.squashgo.feature.play.impl.model.ChallengeCard
+import com.egr.squashgo.feature.play.impl.model.ChallengesError
+import com.egr.squashgo.feature.play.impl.model.ChallengesUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.async
@@ -116,25 +117,4 @@ class ChallengesViewModel @Inject constructor(
     private companion object {
         const val TAG = "ChallengesVM"
     }
-}
-
-data class ChallengeCard(
-    val challenge: Challenge,
-    val other: PlayerWithRating?,
-)
-
-sealed interface ChallengesUiState {
-    data object Loading : ChallengesUiState
-    data class Ready(
-        val incoming: List<ChallengeCard>,
-        val outgoing: List<ChallengeCard>,
-        val cancellingId: String?,
-        val cancelError: Boolean,
-    ) : ChallengesUiState
-    data class Error(val error: ChallengesError) : ChallengesUiState
-}
-
-enum class ChallengesError {
-    Network,
-    NotAuthenticated,
 }

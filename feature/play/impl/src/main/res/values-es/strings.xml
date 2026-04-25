@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common -->
+    <string name="play_back">Atrás</string>
+    <string name="play_retry">Reintentar</string>
+    <string name="play_cancel">Cancelar</string>
+    <string name="play_error_generic">Algo salió mal. Inténtalo de nuevo.</string>
+    <string name="play_error_not_authenticated">Tu sesión expiró. Inicia sesión de nuevo.</string>
+    <string name="play_calibrating">Calibrando</string>
+    <string name="play_elo_format">%1$d Elo</string>
+    <string name="play_tier_format">%1$s · %2$d Elo</string>
+
+    <!-- Match type -->
+    <string name="play_match_type_casual">Casual</string>
+    <string name="play_match_type_ranked">Clasificatorio</string>
+
+    <!-- Challenge status chip -->
+    <string name="play_status_pending">Pendiente</string>
+    <string name="play_status_accepted">Aceptado</string>
+    <string name="play_status_declined">Rechazado</string>
+    <string name="play_status_cancelled">Cancelado</string>
+    <string name="play_status_expired">Expirado</string>
+    <string name="play_status_completed">Completado</string>
+
+    <!-- Challenge create -->
+    <string name="challenge_create_title">Enviar reto</string>
+    <string name="challenge_create_you_label">Tú</string>
+    <string name="challenge_create_opponent_label">Rival</string>
+    <string name="challenge_create_vs">vs</string>
+    <string name="challenge_create_match_type_label">Tipo de partido</string>
+    <string name="challenge_create_ranked_hint">Los partidos clasificatorios afectan tu Elo.</string>
+    <string name="challenge_create_casual_hint">Los partidos casuales se registran pero no afectan tu rating.</string>
+    <string name="challenge_create_message_label">Mensaje (opcional)</string>
+    <string name="challenge_create_message_counter">%1$d / %2$d</string>
+    <string name="challenge_create_send">Enviar reto</string>
+    <string name="challenge_create_sending">Enviando&#8230;</string>
+    <string name="challenge_create_error_network">No pudimos enviar el reto. Revisa tu conexión e inténtalo de nuevo.</string>
+
+    <!-- Challenges list -->
+    <string name="challenges_title">Retos</string>
+    <string name="challenges_tab_incoming">Recibidos</string>
+    <string name="challenges_tab_outgoing">Enviados</string>
+    <string name="challenges_empty_incoming">Aún no tienes retos recibidos.</string>
+    <string name="challenges_empty_outgoing">Aún no has enviado retos.</string>
+    <string name="challenges_outgoing_match_in_progress">Partido en curso — resultado próximamente</string>
+    <string name="challenges_cancel">Cancelar reto</string>
+    <string name="challenges_cancel_confirm_title">¿Cancelar este reto?</string>
+    <string name="challenges_cancel_confirm_body">El otro jugador ya no podrá aceptarlo.</string>
+    <string name="challenges_cancel_confirm_yes">Sí, cancelar</string>
+    <string name="challenges_cancel_confirm_no">Mantenerlo</string>
+    <string name="challenges_cancel_error">No pudimos cancelar el reto. Inténtalo de nuevo.</string>
+    <string name="challenges_unknown_player">Jugador desconocido</string>
+
+    <!-- Challenge detail -->
+    <string name="challenge_detail_title">Reto</string>
+    <string name="challenge_detail_from">De</string>
+    <string name="challenge_detail_message">Mensaje</string>
+    <string name="challenge_detail_no_message">Sin mensaje</string>
+    <string name="challenge_detail_accept">Aceptar</string>
+    <string name="challenge_detail_decline">Rechazar</string>
+    <string name="challenge_detail_expires_today">Expira hoy</string>
+    <string name="challenge_detail_expires_soon">Expira en menos de una hora</string>
+    <string name="challenge_detail_action_error">No pudimos actualizar el reto. Inténtalo de nuevo.</string>
+    <plurals name="challenge_detail_expires_in_days">
+        <item quantity="one">Expira en %1$d día</item>
+        <item quantity="other">Expira en %1$d días</item>
+    </plurals>
+    <plurals name="challenge_detail_expires_in_hours">
+        <item quantity="one">Expira en %1$d hora</item>
+        <item quantity="other">Expira en %1$d horas</item>
+    </plurals>
+</resources>

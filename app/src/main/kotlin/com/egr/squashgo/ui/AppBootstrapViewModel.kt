@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.AuthRepository
+import com.egr.squashgo.ui.model.BootstrapState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -61,10 +62,4 @@ class AppBootstrapViewModel @Inject constructor(
     private companion object {
         const val TAG = "AppBootstrap"
     }
-}
-
-sealed interface BootstrapState {
-    data object Loading : BootstrapState
-    data object LoggedIn : BootstrapState
-    data object LoggedOut : BootstrapState
 }

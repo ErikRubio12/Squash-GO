@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.egr.squashgo.core.model.Court
+import com.egr.squashgo.feature.discover.impl.model.CourtListUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

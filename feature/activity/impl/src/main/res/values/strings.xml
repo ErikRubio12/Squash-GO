@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_title">Match History</string>
+    <string name="activity_back">Back</string>
+    <string name="activity_retry">Retry</string>
+
+    <string name="activity_empty">No matches yet — challenge someone!</string>
+    <string name="activity_error_generic">Something went wrong. Please try again.</string>
+    <string name="activity_error_not_authenticated">Your session expired. Please sign in again.</string>
+
+    <string name="activity_unknown_opponent">Unknown player</string>
+    <string name="activity_result_win">Win</string>
+    <string name="activity_result_loss">Loss</string>
+    <string name="activity_score_format">%1$d-%2$d</string>
+
+    <string name="activity_date_today">Today</string>
+    <string name="activity_date_yesterday">Yesterday</string>
+    <plurals name="activity_date_days_ago">
+        <item quantity="one">%1$d day ago</item>
+        <item quantity="other">%1$d days ago</item>
+    </plurals>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_app_name">Squash &amp; Go</string>
+    <string name="login_tagline">Encuentra rivales. Juega partidos. Escala posiciones.</string>
+    <string name="login_email_label">Correo electrónico</string>
+    <string name="login_send_magic_link">Enviar enlace mágico</string>
+    <string name="login_check_email_title">Revisa tu correo</string>
+    <string name="login_check_email_body">Te enviamos un enlace a %1$s.\nToca el enlace en el correo para iniciar sesión.</string>
+    <string name="login_resend_link">Reenviar enlace</string>
+    <string name="login_signing_in">Iniciando sesión&#8230;</string>
+
+    <string name="login_error_invalid_email">Ingresa un correo electrónico válido.</string>
+    <string name="login_error_network">Sin conexión a internet. Revisa tu red e inténtalo de nuevo.</string>
+    <string name="login_error_rate_limited">Demasiados intentos. Espera un momento e inténtalo de nuevo.</string>
+    <string name="login_error_server">No pudimos enviar el enlace ahora. Inténtalo en unos minutos.</string>
+    <string name="login_error_unknown">Algo salió mal. Inténtalo de nuevo.</string>
+
+    <!-- Profile setup -->
+    <string name="profile_setup_title">¿Cómo quieres que te llamemos?</string>
+    <string name="profile_setup_subtitle">Este es el nombre que verán otros jugadores cuando les retes.</string>
+    <string name="profile_setup_display_name_label">Nombre</string>
+    <string name="profile_setup_display_name_hint">Entre %1$d y %2$d caracteres</string>
+    <string name="profile_setup_continue">Continuar</string>
+    <string name="profile_setup_retry">Reintentar</string>
+    <string name="profile_setup_error_invalid_length">Tu nombre no cumple con la longitud requerida.</string>
+    <string name="profile_setup_error_network">No pudimos guardar tu perfil. Revisa tu conexión e inténtalo de nuevo.</string>
+    <string name="profile_setup_error_not_authenticated">Tu sesión expiró. Inicia sesión de nuevo.</string>
+
+    <!-- Home court picker -->
+    <string name="home_court_title">Elige tus canchas habituales</string>
+    <string name="home_court_subtitle">Elige hasta %1$d canchas donde juegas con frecuencia. Las usaremos para emparejarte con rivales cercanos.</string>
+    <string name="home_court_search_label">Buscar canchas</string>
+    <string name="home_court_selection_count">%1$d de %2$d seleccionadas</string>
+    <string name="home_court_primary_chip">Principal</string>
+    <string name="home_court_make_primary">Marcar como principal</string>
+    <string name="home_court_empty">Ninguna cancha coincide con tu búsqueda.</string>
+    <string name="home_court_save">Guardar y continuar</string>
+    <string name="home_court_retry">Reintentar</string>
+    <string name="home_court_error_min_not_met">Elige al menos una cancha para continuar.</string>
+    <string name="home_court_error_network">Algo salió mal. Inténtalo de nuevo.</string>
+    <string name="home_court_error_not_authenticated">Tu sesión expiró. Inicia sesión de nuevo.</string>
+</resources>

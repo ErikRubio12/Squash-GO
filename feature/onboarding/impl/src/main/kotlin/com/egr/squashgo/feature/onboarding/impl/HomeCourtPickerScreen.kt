@@ -34,6 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.egr.squashgo.core.model.Court
+import com.egr.squashgo.feature.onboarding.impl.model.HomeCourtPickerError
+import com.egr.squashgo.feature.onboarding.impl.model.HomeCourtPickerUiState
 
 @Composable
 fun HomeCourtPickerScreen(

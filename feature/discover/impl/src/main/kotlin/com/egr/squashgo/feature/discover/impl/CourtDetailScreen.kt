@@ -34,8 +34,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.egr.squashgo.core.domain.rating.TierMapper
-import com.egr.squashgo.core.domain.repository.PlayerWithRating
+import com.egr.squashgo.core.domain.repository.model.PlayerWithRating
 import com.egr.squashgo.core.model.Court
+import com.egr.squashgo.feature.discover.impl.model.CourtDetailUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

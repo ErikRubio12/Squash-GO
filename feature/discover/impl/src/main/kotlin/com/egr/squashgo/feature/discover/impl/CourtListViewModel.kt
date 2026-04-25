@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.domain.repository.CourtRepository
-import com.egr.squashgo.core.model.Court
+import com.egr.squashgo.feature.discover.impl.model.CourtListUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -48,9 +48,3 @@ class CourtListViewModel @Inject constructor(
     }
 }
 
-sealed interface CourtListUiState {
-    data object Loading : CourtListUiState
-    data object Empty : CourtListUiState
-    data class Success(val courts: List<Court>) : CourtListUiState
-    data object Error : CourtListUiState
-}

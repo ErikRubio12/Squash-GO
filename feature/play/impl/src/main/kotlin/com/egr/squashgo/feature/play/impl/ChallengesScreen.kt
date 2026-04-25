@@ -45,6 +45,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.egr.squashgo.core.model.ChallengeStatus
+import com.egr.squashgo.feature.play.impl.model.ChallengeCard
+import com.egr.squashgo.feature.play.impl.model.ChallengesError
+import com.egr.squashgo.feature.play.impl.model.ChallengesUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

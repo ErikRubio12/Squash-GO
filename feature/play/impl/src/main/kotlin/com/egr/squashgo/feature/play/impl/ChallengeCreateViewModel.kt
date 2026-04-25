@@ -6,8 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.ChallengeRepository
 import com.egr.squashgo.core.domain.repository.PlayerRepository
-import com.egr.squashgo.core.domain.repository.PlayerWithRating
 import com.egr.squashgo.core.model.MatchType
+import com.egr.squashgo.feature.play.impl.model.ChallengeCreateError
+import com.egr.squashgo.feature.play.impl.model.ChallengeCreateUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -117,22 +118,3 @@ class ChallengeCreateViewModel @Inject constructor(
     }
 }
 
-sealed interface ChallengeCreateUiState {
-    data object Loading : ChallengeCreateUiState
-    data class Ready(
-        val me: PlayerWithRating,
-        val opponent: PlayerWithRating,
-        val courtId: String?,
-        val matchType: MatchType,
-        val message: String,
-        val isSending: Boolean,
-        val error: ChallengeCreateError?,
-    ) : ChallengeCreateUiState
-    data object Sent : ChallengeCreateUiState
-    data class Error(val error: ChallengeCreateError) : ChallengeCreateUiState
-}
-
-enum class ChallengeCreateError {
-    Network,
-    NotAuthenticated,
-}

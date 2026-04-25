@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_title">Historial de partidos</string>
+    <string name="activity_back">Atrás</string>
+    <string name="activity_retry">Reintentar</string>
+
+    <string name="activity_empty">Aún no tienes partidos — ¡rétale a alguien!</string>
+    <string name="activity_error_generic">Algo salió mal. Inténtalo de nuevo.</string>
+    <string name="activity_error_not_authenticated">Tu sesión expiró. Inicia sesión de nuevo.</string>
+
+    <string name="activity_unknown_opponent">Rival desconocido</string>
+    <string name="activity_result_win">Victoria</string>
+    <string name="activity_result_loss">Derrota</string>
+    <string name="activity_score_format">%1$d-%2$d</string>
+
+    <string name="activity_date_today">Hoy</string>
+    <string name="activity_date_yesterday">Ayer</string>
+    <plurals name="activity_date_days_ago">
+        <item quantity="one">hace %1$d día</item>
+        <item quantity="other">hace %1$d días</item>
+    </plurals>
+</resources>
