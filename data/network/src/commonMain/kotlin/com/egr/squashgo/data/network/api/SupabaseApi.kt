@@ -1,6 +1,9 @@
 package com.egr.squashgo.data.network.api
 
 import io.ktor.client.HttpClient
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BearerTokens
+import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
@@ -16,7 +19,8 @@ object SupabaseApi {
     fun createClient(
         supabaseUrl: String,
         supabaseAnonKey: String,
-        tokenProvider: () -> String? = { null },
+        loadSessionTokens: () -> Pair<String, String>? = { null },
+        refreshSession: suspend (oldRefreshToken: String) -> Pair<String, String>? = { null },
     ): HttpClient {
         return HttpClient {
             expectSuccess = true
@@ -30,14 +34,28 @@ object SupabaseApi {
             install(Logging) {
                 level = LogLevel.BODY
             }
+            install(Auth) {
+                bearer {
+                    loadTokens {
+                        loadSessionTokens()?.let { (access, refresh) ->
+                            BearerTokens(access, refresh)
+                        }
+                    }
+                    refreshTokens {
+                        val oldRefresh = oldTokens?.refreshToken ?: return@refreshTokens null
+                        refreshSession(oldRefresh)?.let { (access, refresh) ->
+                            BearerTokens(access, refresh)
+                        }
+                    }
+                    sendWithoutRequest { request ->
+                        "auth" !in request.url.pathSegments
+                    }
+                }
+            }
             defaultRequest {
                 url(supabaseUrl)
                 contentType(ContentType.Application.Json)
                 header("apikey", supabaseAnonKey)
-                val token = tokenProvider()
-                if (token != null) {
-                    header("Authorization", "Bearer $token")
-                }
             }
         }
     }
