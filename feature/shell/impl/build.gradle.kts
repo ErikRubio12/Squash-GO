@@ -12,4 +12,6 @@ dependencies {
     implementation(projects.feature.play.api)
     implementation(projects.feature.activity.api)
     implementation(projects.feature.profile.api)
+    implementation(projects.core.domain)
+    implementation(projects.core.auth)
 }

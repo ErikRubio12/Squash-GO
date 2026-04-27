@@ -1,6 +1,5 @@
-package com.egr.squashgo.di
+package com.egr.squashgo.core.config.android
 
-import com.egr.squashgo.BuildConfig
 import com.egr.squashgo.core.config.SupabaseConfig
 import dagger.Module
 import dagger.Provides
@@ -10,12 +9,9 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object SupabaseConfigModule {
+object AppConfigModule {
 
     @Provides
     @Singleton
-    fun provideSupabaseConfig(): SupabaseConfig = SupabaseConfig(
-        url = BuildConfig.SUPABASE_URL,
-        anonKey = BuildConfig.SUPABASE_ANON_KEY,
-    )
+    fun provideSupabaseConfig(): SupabaseConfig = ConfigBootstrap.requireSupabaseConfig()
 }

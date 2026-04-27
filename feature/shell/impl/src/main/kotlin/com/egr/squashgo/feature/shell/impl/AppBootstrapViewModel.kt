@@ -1,11 +1,11 @@
-package com.egr.squashgo.ui
+package com.egr.squashgo.feature.shell.impl
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.AuthRepository
-import com.egr.squashgo.ui.model.BootstrapState
+import com.egr.squashgo.feature.shell.impl.model.BootstrapState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow

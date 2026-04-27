@@ -43,6 +43,7 @@ include(":core:navigation")
 include(":core:auth")
 include(":core:ui")
 include(":core:config")
+include(":core:config:android")
 
 // Data modules
 include(":data:network")

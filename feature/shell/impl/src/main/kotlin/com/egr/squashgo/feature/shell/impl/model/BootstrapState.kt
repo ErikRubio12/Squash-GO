@@ -1,4 +1,4 @@
-package com.egr.squashgo.ui.model
+package com.egr.squashgo.feature.shell.impl.model
 
 sealed interface BootstrapState {
     data object Loading : BootstrapState

@@ -23,8 +23,9 @@ import com.egr.squashgo.feature.onboarding.api.ProfileSetupRoute
 import com.egr.squashgo.feature.onboarding.impl.navigation.onboardingGraph
 import com.egr.squashgo.feature.play.impl.navigation.playGraph
 import com.egr.squashgo.feature.profile.impl.navigation.profileGraph
+import com.egr.squashgo.feature.shell.impl.AppBootstrapViewModel
 import com.egr.squashgo.feature.shell.impl.MainShellScaffold
-import com.egr.squashgo.ui.model.BootstrapState
+import com.egr.squashgo.feature.shell.impl.model.BootstrapState
 
 @Composable
 fun SquashGoApp(
