@@ -1,4 +1,4 @@
-package com.egr.squashgo.di
+package com.egr.squashgo.data.network.di
 
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.AuthRepository

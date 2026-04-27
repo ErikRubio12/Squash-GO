@@ -57,6 +57,7 @@ dependencies {
 
     // Core
     implementation(projects.core.common)
+    implementation(projects.core.config)
     implementation(projects.core.model)
     implementation(projects.core.domain)
     implementation(projects.core.designsystem)
@@ -66,6 +67,7 @@ dependencies {
 
     // Data
     implementation(projects.data.network)
+    implementation(projects.data.network.di)
 
     // Feature APIs
     implementation(projects.feature.onboarding.api)

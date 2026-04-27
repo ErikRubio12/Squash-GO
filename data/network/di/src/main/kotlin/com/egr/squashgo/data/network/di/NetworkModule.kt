@@ -1,10 +1,10 @@
-package com.egr.squashgo.di
+package com.egr.squashgo.data.network.di
 
 import android.util.Log
-import com.egr.squashgo.BuildConfig
 import com.egr.squashgo.core.auth.SessionManager
 import com.egr.squashgo.core.domain.repository.AuthRepository
 import com.egr.squashgo.data.network.api.SupabaseApi
+import com.egr.squashgo.core.config.SupabaseConfig
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
@@ -23,12 +23,13 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHttpClient(
+        config: SupabaseConfig,
         sessionManager: SessionManager,
         authRepository: Lazy<AuthRepository>,
     ): HttpClient {
         return SupabaseApi.createClient(
-            supabaseUrl = BuildConfig.SUPABASE_URL,
-            supabaseAnonKey = BuildConfig.SUPABASE_ANON_KEY,
+            supabaseUrl = config.url,
+            supabaseAnonKey = config.anonKey,
             loadSessionTokens = {
                 val access = sessionManager.accessToken
                 val refresh = sessionManager.refreshToken

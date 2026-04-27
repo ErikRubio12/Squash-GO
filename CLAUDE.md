@@ -3,6 +3,8 @@
 ## Project Overview
 Squash & Go is a mobile app for squash players to discover courts, find rivals, challenge each other, record match results, and build Elo-style skill ratings. Pilot market: Metro Vancouver.
 
+The codebase is also designed as a **white-label foundation**: shared modules are client-agnostic, `:app` is the per-client customization surface (config, branding, feature graph composition). See `docs/white-label.md` for the architecture, module layout, and Android/iOS parity model.
+
 ## Tech Stack
 - **Language**: Kotlin 2.3.0
 - **KMP Modules**: `:core:model`, `:core:domain`, `:data:network` — models, domain logic, Ktor networking (shared with future iOS)

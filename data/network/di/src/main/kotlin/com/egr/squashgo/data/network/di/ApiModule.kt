@@ -1,4 +1,4 @@
-package com.egr.squashgo.di
+package com.egr.squashgo.data.network.di
 
 import com.egr.squashgo.data.network.api.AuthApi
 import com.egr.squashgo.data.network.api.ChallengeApi

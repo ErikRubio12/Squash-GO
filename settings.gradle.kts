@@ -42,9 +42,11 @@ include(":core:designsystem")
 include(":core:navigation")
 include(":core:auth")
 include(":core:ui")
+include(":core:config")
 
 // Data modules
 include(":data:network")
+include(":data:network:di")
 include(":data:database")
 
 // Feature modules
