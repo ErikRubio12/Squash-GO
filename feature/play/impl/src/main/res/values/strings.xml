@@ -83,4 +83,17 @@
     <string name="match_result_submitting">Submitting&#8230;</string>
     <string name="match_result_submit_error">Couldn\'t submit the result. Please try again.</string>
     <string name="match_result_invalid">Score isn\'t valid. Best of 5 — winner needs 3 games of 11+ (win by 2).</string>
+
+    <!-- Match confirm -->
+    <string name="match_confirm_title">Confirm Result</string>
+    <string name="match_confirm_loading">Loading match&#8230;</string>
+    <string name="match_confirm_load_error">Couldn\'t load the match. Please try again.</string>
+    <string name="match_confirm_error_not_participant">You\'re not part of this match.</string>
+    <string name="match_confirm_error_nothing">There\'s no result to confirm yet.</string>
+    <string name="match_confirm_error_own">You can\'t confirm a result you submitted yourself.</string>
+    <string name="match_confirm_submitted_by">Submitted by %1$s</string>
+    <string name="match_confirm_winner_label">Winner</string>
+    <string name="match_confirm_button">Confirm Result</string>
+    <string name="match_confirm_confirming">Confirming&#8230;</string>
+    <string name="match_confirm_error">Couldn\'t confirm the result. Please try again.</string>
 </resources>

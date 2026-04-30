@@ -83,4 +83,17 @@
     <string name="match_result_submitting">Enviando&#8230;</string>
     <string name="match_result_submit_error">No pudimos enviar el resultado. Inténtalo de nuevo.</string>
     <string name="match_result_invalid">Marcador no válido. Al mejor de 5 — el ganador necesita 3 juegos a 11+ (ganando por 2).</string>
+
+    <!-- Match confirm -->
+    <string name="match_confirm_title">Confirmar resultado</string>
+    <string name="match_confirm_loading">Cargando partido&#8230;</string>
+    <string name="match_confirm_load_error">No pudimos cargar el partido. Inténtalo de nuevo.</string>
+    <string name="match_confirm_error_not_participant">No formas parte de este partido.</string>
+    <string name="match_confirm_error_nothing">Aún no hay resultado por confirmar.</string>
+    <string name="match_confirm_error_own">No puedes confirmar un resultado que tú mismo enviaste.</string>
+    <string name="match_confirm_submitted_by">Enviado por %1$s</string>
+    <string name="match_confirm_winner_label">Ganador</string>
+    <string name="match_confirm_button">Confirmar resultado</string>
+    <string name="match_confirm_confirming">Confirmando&#8230;</string>
+    <string name="match_confirm_error">No pudimos confirmar el resultado. Inténtalo de nuevo.</string>
 </resources>
