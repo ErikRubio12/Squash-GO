@@ -69,4 +69,18 @@
         <item quantity="one">Expires in %1$d hour</item>
         <item quantity="other">Expires in %1$d hours</item>
     </plurals>
+
+    <!-- Match result -->
+    <string name="match_result_title">Submit Result</string>
+    <string name="match_result_loading">Loading match&#8230;</string>
+    <string name="match_result_load_error">Couldn\'t load the match. Please try again.</string>
+    <string name="match_result_error_not_participant">You\'re not part of this match.</string>
+    <string name="match_result_error_already_submitted">A result has already been submitted for this match.</string>
+    <string name="match_result_game_label">Game %1$d</string>
+    <string name="match_result_score_placeholder">—</string>
+    <string name="match_result_score_input_cd">%1$s score, game %2$d</string>
+    <string name="match_result_submit">Submit Result</string>
+    <string name="match_result_submitting">Submitting&#8230;</string>
+    <string name="match_result_submit_error">Couldn\'t submit the result. Please try again.</string>
+    <string name="match_result_invalid">Score isn\'t valid. Best of 5 — winner needs 3 games of 11+ (win by 2).</string>
 </resources>

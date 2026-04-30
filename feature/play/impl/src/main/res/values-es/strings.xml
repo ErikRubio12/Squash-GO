@@ -69,4 +69,18 @@
         <item quantity="one">Expira en %1$d hora</item>
         <item quantity="other">Expira en %1$d horas</item>
     </plurals>
+
+    <!-- Match result -->
+    <string name="match_result_title">Registrar resultado</string>
+    <string name="match_result_loading">Cargando partido&#8230;</string>
+    <string name="match_result_load_error">No pudimos cargar el partido. Inténtalo de nuevo.</string>
+    <string name="match_result_error_not_participant">No formas parte de este partido.</string>
+    <string name="match_result_error_already_submitted">Ya se registró un resultado para este partido.</string>
+    <string name="match_result_game_label">Juego %1$d</string>
+    <string name="match_result_score_placeholder">—</string>
+    <string name="match_result_score_input_cd">Puntos de %1$s, juego %2$d</string>
+    <string name="match_result_submit">Enviar resultado</string>
+    <string name="match_result_submitting">Enviando&#8230;</string>
+    <string name="match_result_submit_error">No pudimos enviar el resultado. Inténtalo de nuevo.</string>
+    <string name="match_result_invalid">Marcador no válido. Al mejor de 5 — el ganador necesita 3 juegos a 11+ (ganando por 2).</string>
 </resources>
