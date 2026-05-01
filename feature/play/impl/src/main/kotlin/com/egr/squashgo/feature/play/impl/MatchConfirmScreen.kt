@@ -14,14 +14,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -85,6 +89,10 @@ fun MatchConfirmScreen(
                 is MatchConfirmUiState.Ready -> ReadyView(
                     state = state,
                     onConfirm = viewModel::confirm,
+                    onOpenDispute = viewModel::openDisputeDialog,
+                    onDismissDispute = viewModel::dismissDisputeDialog,
+                    onDisputeReasonChange = viewModel::updateDisputeReason,
+                    onSubmitDispute = viewModel::submitDispute,
                 )
             }
         }
@@ -136,9 +144,14 @@ private fun ErrorView(error: MatchConfirmError, onRetry: () -> Unit) {
 private fun ReadyView(
     state: MatchConfirmUiState.Ready,
     onConfirm: () -> Unit,
+    onOpenDispute: () -> Unit,
+    onDismissDispute: () -> Unit,
+    onDisputeReasonChange: (String) -> Unit,
+    onSubmitDispute: () -> Unit,
 ) {
     val games = state.match.score?.games.orEmpty()
     val winnerIsA = state.match.winnerId == state.match.playerAId
+    val anyActionInProgress = state.isConfirming || state.isDisputing
 
     Column(
         modifier = Modifier
@@ -179,20 +192,112 @@ private fun ReadyView(
             Spacer(Modifier.height(8.dp))
         }
 
-        Button(
-            onClick = onConfirm,
-            enabled = !state.isConfirming,
+        Row(
             modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = stringResource(
-                    if (state.isConfirming) R.string.match_confirm_confirming
-                    else R.string.match_confirm_button,
-                ),
-            )
+            OutlinedButton(
+                onClick = onOpenDispute,
+                enabled = !anyActionInProgress,
+                modifier = Modifier.weight(1f),
+            ) {
+                Text(stringResource(R.string.match_dispute_button))
+            }
+            Spacer(Modifier.width(12.dp))
+            Button(
+                onClick = onConfirm,
+                enabled = !anyActionInProgress,
+                modifier = Modifier.weight(1f),
+            ) {
+                Text(
+                    text = stringResource(
+                        if (state.isConfirming) R.string.match_confirm_confirming
+                        else R.string.match_confirm_button,
+                    ),
+                )
+            }
         }
     }
+
+    if (state.disputeDialogOpen) {
+        DisputeDialog(
+            reason = state.disputeReason,
+            isSubmitting = state.isDisputing,
+            showError = state.disputeError,
+            onReasonChange = onDisputeReasonChange,
+            onSubmit = onSubmitDispute,
+            onDismiss = onDismissDispute,
+        )
+    }
 }
+
+@Composable
+private fun DisputeDialog(
+    reason: String,
+    isSubmitting: Boolean,
+    showError: Boolean,
+    onReasonChange: (String) -> Unit,
+    onSubmit: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    val canSubmit = reason.trim().isNotEmpty() && !isSubmitting
+    AlertDialog(
+        onDismissRequest = { if (!isSubmitting) onDismiss() },
+        title = { Text(stringResource(R.string.match_dispute_dialog_title)) },
+        text = {
+            Column {
+                Text(
+                    text = stringResource(R.string.match_dispute_dialog_body),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                Spacer(Modifier.height(12.dp))
+                OutlinedTextField(
+                    value = reason,
+                    onValueChange = onReasonChange,
+                    enabled = !isSubmitting,
+                    label = { Text(stringResource(R.string.match_dispute_reason_label)) },
+                    supportingText = {
+                        Text(
+                            text = stringResource(
+                                R.string.match_dispute_reason_counter,
+                                reason.length,
+                                MAX_REASON_LENGTH_DISPLAY,
+                            ),
+                        )
+                    },
+                    minLines = 3,
+                    maxLines = 6,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                if (showError) {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        text = stringResource(R.string.match_dispute_error),
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            Button(onClick = onSubmit, enabled = canSubmit) {
+                Text(
+                    text = stringResource(
+                        if (isSubmitting) R.string.match_dispute_submitting
+                        else R.string.match_dispute_submit,
+                    ),
+                )
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss, enabled = !isSubmitting) {
+                Text(stringResource(R.string.play_cancel))
+            }
+        },
+    )
+}
+
+private const val MAX_REASON_LENGTH_DISPLAY = 240
 
 @Composable
 private fun ColumnsHeader(

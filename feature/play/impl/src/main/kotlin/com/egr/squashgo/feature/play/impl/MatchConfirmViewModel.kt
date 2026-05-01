@@ -78,6 +78,10 @@ class MatchConfirmViewModel @Inject constructor(
                     youAreA = youAreA,
                     isConfirming = false,
                     confirmError = false,
+                    isDisputing = false,
+                    disputeError = false,
+                    disputeDialogOpen = false,
+                    disputeReason = "",
                 )
             } catch (e: CancellationException) {
                 throw e
@@ -96,7 +100,7 @@ class MatchConfirmViewModel @Inject constructor(
 
     fun confirm() {
         val current = _uiState.value as? MatchConfirmUiState.Ready ?: return
-        if (current.isConfirming) return
+        if (current.isConfirming || current.isDisputing) return
 
         viewModelScope.launch {
             _uiState.update { current.copy(isConfirming = true, confirmError = false) }
@@ -117,7 +121,54 @@ class MatchConfirmViewModel @Inject constructor(
         }
     }
 
+    fun openDisputeDialog() {
+        val current = _uiState.value as? MatchConfirmUiState.Ready ?: return
+        if (current.isConfirming || current.isDisputing) return
+        _uiState.update {
+            current.copy(disputeDialogOpen = true, disputeReason = "", disputeError = false)
+        }
+    }
+
+    fun dismissDisputeDialog() {
+        val current = _uiState.value as? MatchConfirmUiState.Ready ?: return
+        if (current.isDisputing) return
+        _uiState.update { current.copy(disputeDialogOpen = false) }
+    }
+
+    fun updateDisputeReason(reason: String) {
+        val current = _uiState.value as? MatchConfirmUiState.Ready ?: return
+        _uiState.update {
+            current.copy(disputeReason = reason.take(MAX_REASON_LENGTH), disputeError = false)
+        }
+    }
+
+    fun submitDispute() {
+        val current = _uiState.value as? MatchConfirmUiState.Ready ?: return
+        if (current.isDisputing) return
+        val reason = current.disputeReason.trim()
+        if (reason.isEmpty()) return
+
+        viewModelScope.launch {
+            _uiState.update { current.copy(isDisputing = true, disputeError = false) }
+            try {
+                matchRepository.disputeMatch(current.match.id, reason)
+                _uiState.value = MatchConfirmUiState.Done
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Throwable) {
+                Log.e(TAG, "dispute match failed", e)
+                _uiState.update {
+                    (_uiState.value as? MatchConfirmUiState.Ready ?: current).copy(
+                        isDisputing = false,
+                        disputeError = true,
+                    )
+                }
+            }
+        }
+    }
+
     private companion object {
         const val TAG = "MatchConfirmVM"
+        const val MAX_REASON_LENGTH = 240
     }
 }

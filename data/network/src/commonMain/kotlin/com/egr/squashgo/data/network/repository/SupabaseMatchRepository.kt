@@ -43,6 +43,7 @@ class SupabaseMatchRepository(
     }
 
     override suspend fun disputeMatch(matchId: String, reason: String): Match {
+        edgeFunctionApi.disputeMatch(matchId, reason)
         return getMatch(matchId)
     }
 }

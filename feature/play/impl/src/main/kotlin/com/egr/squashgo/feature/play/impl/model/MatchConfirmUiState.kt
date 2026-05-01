@@ -13,6 +13,10 @@ sealed interface MatchConfirmUiState {
         val youAreA: Boolean,
         val isConfirming: Boolean,
         val confirmError: Boolean,
+        val isDisputing: Boolean,
+        val disputeError: Boolean,
+        val disputeDialogOpen: Boolean,
+        val disputeReason: String,
     ) : MatchConfirmUiState
 
     data object Done : MatchConfirmUiState

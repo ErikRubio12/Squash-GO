@@ -96,4 +96,14 @@
     <string name="match_confirm_button">Confirm Result</string>
     <string name="match_confirm_confirming">Confirming&#8230;</string>
     <string name="match_confirm_error">Couldn\'t confirm the result. Please try again.</string>
+
+    <!-- Match dispute -->
+    <string name="match_dispute_button">Dispute</string>
+    <string name="match_dispute_dialog_title">Dispute this result</string>
+    <string name="match_dispute_dialog_body">Tell us what\'s wrong. An admin will review the match and decide.</string>
+    <string name="match_dispute_reason_label">Reason</string>
+    <string name="match_dispute_reason_counter">%1$d / %2$d</string>
+    <string name="match_dispute_submit">Submit Dispute</string>
+    <string name="match_dispute_submitting">Submitting&#8230;</string>
+    <string name="match_dispute_error">Couldn\'t submit the dispute. Please try again.</string>
 </resources>

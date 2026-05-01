@@ -52,3 +52,15 @@ data class CreateMatchRequest(
     @SerialName("court_id") val courtId: String? = null,
     @SerialName("match_type") val matchType: String,
 )
+
+@Serializable
+data class DisputeMatchRequest(
+    @SerialName("match_id") val matchId: String,
+    val reason: String,
+)
+
+@Serializable
+data class DisputeMatchResponse(
+    val success: Boolean,
+    @SerialName("dispute_id") val disputeId: String? = null,
+)
