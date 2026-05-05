@@ -27,6 +27,11 @@ class AppBootstrapViewModel @Inject constructor(
         bootstrap()
     }
 
+    fun logout() {
+        sessionManager.clearSession()
+        _state.value = BootstrapState.NeedsLogin
+    }
+
     private fun bootstrap() {
         val refreshToken = sessionManager.refreshToken
         if (refreshToken.isNullOrBlank()) {

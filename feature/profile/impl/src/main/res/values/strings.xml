@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_retry">Retry</string>
+    <string name="profile_logout">Log out</string>
+
+    <string name="profile_elo_label">Elo</string>
+    <string name="profile_home_courts">Home courts</string>
+    <string name="profile_home_courts_empty">No home courts yet.</string>
+    <string name="profile_court_primary">Primary</string>
+
+    <string name="profile_error_generic">Couldn\'t load your profile. Please try again.</string>
+    <string name="profile_error_not_authenticated">Your session expired. Please sign in again.</string>
+
+    <plurals name="profile_ranked_matches">
+        <item quantity="one">%1$d ranked match</item>
+        <item quantity="other">%1$d ranked matches</item>
+    </plurals>
+    <plurals name="profile_provisional_matches">
+        <item quantity="one">Calibrating · %1$d / %2$d ranked match</item>
+        <item quantity="other">Calibrating · %1$d / %2$d ranked matches</item>
+    </plurals>
+</resources>

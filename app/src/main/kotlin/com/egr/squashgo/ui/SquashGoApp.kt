@@ -40,14 +40,17 @@ fun SquashGoApp(
             BootstrapState.Ready -> AppNavGraph(
                 deepLinkUri = deepLinkUri,
                 startDestination = CourtListRoute,
+                onLogout = bootstrapViewModel::logout,
             )
             BootstrapState.NeedsOnboarding -> AppNavGraph(
                 deepLinkUri = deepLinkUri,
                 startDestination = ProfileSetupRoute,
+                onLogout = bootstrapViewModel::logout,
             )
             BootstrapState.NeedsLogin -> AppNavGraph(
                 deepLinkUri = deepLinkUri,
                 startDestination = LoginRoute,
+                onLogout = bootstrapViewModel::logout,
             )
         }
     }
@@ -57,6 +60,7 @@ fun SquashGoApp(
 private fun AppNavGraph(
     deepLinkUri: Uri?,
     startDestination: Any,
+    onLogout: () -> Unit,
 ) {
     val navController = rememberNavController()
     MainShellScaffold(navController = navController) { padding ->
@@ -77,7 +81,7 @@ private fun AppNavGraph(
 
             discoverGraph(navController)
             playGraph(navController)
-            profileGraph(navController)
+            profileGraph(onLogout = onLogout)
             activityGraph(navController)
         }
     }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_retry">Reintentar</string>
+    <string name="profile_logout">Cerrar sesión</string>
+
+    <string name="profile_elo_label">Elo</string>
+    <string name="profile_home_courts">Canchas habituales</string>
+    <string name="profile_home_courts_empty">Aún no tienes canchas habituales.</string>
+    <string name="profile_court_primary">Principal</string>
+
+    <string name="profile_error_generic">No se pudo cargar tu perfil. Inténtalo de nuevo.</string>
+    <string name="profile_error_not_authenticated">Tu sesión expiró. Inicia sesión de nuevo.</string>
+
+    <plurals name="profile_ranked_matches">
+        <item quantity="one">%1$d partido clasificatorio</item>
+        <item quantity="other">%1$d partidos clasificatorios</item>
+    </plurals>
+    <plurals name="profile_provisional_matches">
+        <item quantity="one">Calibrando · %1$d / %2$d partido clasificatorio</item>
+        <item quantity="other">Calibrando · %1$d / %2$d partidos clasificatorios</item>
+    </plurals>
+</resources>
