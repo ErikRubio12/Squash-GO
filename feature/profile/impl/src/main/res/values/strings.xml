@@ -36,8 +36,12 @@
     <string name="design_system_demo_empty_title">Empty state example</string>
     <string name="design_system_demo_empty_body">A single shared component replaces the inline empty state every feature builds today.</string>
 
-    <string name="design_system_demo_remote_section_label">Remote sync (simulated)</string>
-    <string name="design_system_demo_remote_section_body">Tap to simulate a 1.5s network call that returns the next active palette. Same code path as a real HTTP/Supabase impl — only the binding in DesignSystemModule changes.</string>
+    <string name="design_system_demo_remote_section_label">Remote sync</string>
+    <string name="design_system_demo_remote_section_body">Tap to fetch the active brand palette from Supabase. Change which row has is_active = true in the brand_palettes table to switch what the app downloads.</string>
     <string name="design_system_demo_remote_fetch">Fetch latest from server</string>
     <string name="design_system_demo_remote_syncing">Syncing…</string>
+
+    <string name="design_system_demo_fetch_success">Applied remote palette: %1$s</string>
+    <string name="design_system_demo_fetch_no_active">No active palette on server — kept current palette.</string>
+    <string name="design_system_demo_fetch_error">Couldn\'t fetch palette — kept current palette. Check logcat (tag DesignSystemDemoVM).</string>
 </resources>

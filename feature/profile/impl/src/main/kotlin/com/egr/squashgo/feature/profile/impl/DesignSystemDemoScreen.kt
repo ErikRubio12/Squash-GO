@@ -21,11 +21,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,6 +44,7 @@ import com.egr.squashgo.core.designsystem.component.LoadingIndicator
 import com.egr.squashgo.core.designsystem.component.PrimaryButton
 import com.egr.squashgo.core.designsystem.component.SecondaryButton
 import com.egr.squashgo.core.designsystem.tokens.BrandPalette
+import com.egr.squashgo.feature.profile.impl.model.DesignSystemFetchResult
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,6 +53,24 @@ fun DesignSystemDemoScreen(
     viewModel: DesignSystemDemoViewModel = hiltViewModel(),
 ) {
     val tokens by viewModel.tokens
+    val snackbarHostState = remember { SnackbarHostState() }
+    val lastFetch by viewModel.lastFetch
+    val successTemplate = stringResource(R.string.design_system_demo_fetch_success)
+    val noActiveMsg = stringResource(R.string.design_system_demo_fetch_no_active)
+    val errorMsg = stringResource(R.string.design_system_demo_fetch_error)
+
+    LaunchedEffect(lastFetch) {
+        val message = when (val result = lastFetch) {
+            null -> null
+            is DesignSystemFetchResult.Success -> successTemplate.format(result.brandName)
+            DesignSystemFetchResult.NoActivePalette -> noActiveMsg
+            is DesignSystemFetchResult.Error -> errorMsg
+        }
+        if (message != null) {
+            snackbarHostState.showSnackbar(message)
+            viewModel.consumeLastFetch()
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -67,6 +90,7 @@ fun DesignSystemDemoScreen(
                 ),
             )
         },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
     ) { padding ->
         LazyColumn(
             modifier = Modifier

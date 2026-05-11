@@ -20,6 +20,14 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
+            // BrandPalette + ThemeTokens live here. Required by BrandPaletteMapper and
+            // SupabaseRemoteThemeSource, which produce Compose Color values and therefore
+            // can only exist on the Android source set.
+            implementation(projects.core.designsystem)
+            // Compose UI is needed for `androidx.compose.ui.graphics.Color`, which the
+            // mapper parses hex strings into. Only the type is used (no @Composable code),
+            // so no Compose plugin is required here.
+            implementation(libs.compose.ui)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)

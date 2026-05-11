@@ -1,6 +1,7 @@
 package com.egr.squashgo.data.network.di
 
 import com.egr.squashgo.data.network.api.AuthApi
+import com.egr.squashgo.data.network.api.BrandPaletteApi
 import com.egr.squashgo.data.network.api.ChallengeApi
 import com.egr.squashgo.data.network.api.CourtApi
 import com.egr.squashgo.data.network.api.EdgeFunctionApi
@@ -45,4 +46,8 @@ object ApiModule {
     @Provides
     @Singleton
     fun providePushTokenApi(client: HttpClient): PushTokenApi = PushTokenApi(client)
+
+    @Provides
+    @Singleton
+    fun provideBrandPaletteApi(client: HttpClient): BrandPaletteApi = BrandPaletteApi(client)
 }
