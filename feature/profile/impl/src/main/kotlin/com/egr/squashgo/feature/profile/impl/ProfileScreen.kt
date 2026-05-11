@@ -45,6 +45,7 @@ import com.egr.squashgo.feature.profile.impl.model.ProfileUiState
 @Composable
 fun ProfileScreen(
     onLogout: () -> Unit,
+    onOpenDesignSystemDemo: () -> Unit,
     viewModel: ProfileViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -59,6 +60,7 @@ fun ProfileScreen(
             is ProfileUiState.Ready -> ProfileContent(
                 data = state.data,
                 onLogout = onLogout,
+                onOpenDesignSystemDemo = onOpenDesignSystemDemo,
             )
         }
     }
@@ -68,6 +70,7 @@ fun ProfileScreen(
 private fun ProfileContent(
     data: ProfileData,
     onLogout: () -> Unit,
+    onOpenDesignSystemDemo: () -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -79,6 +82,14 @@ private fun ProfileContent(
         item { IdentityHeader(data = data) }
         item { RatingCard(data = data) }
         item { CourtsCard(courts = data.courts) }
+        item {
+            TextButton(
+                onClick = onOpenDesignSystemDemo,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(stringResource(R.string.profile_design_system_demo_open))
+            }
+        }
         item {
             OutlinedButton(
                 onClick = onLogout,

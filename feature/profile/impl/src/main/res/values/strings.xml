@@ -19,4 +19,20 @@
         <item quantity="one">Calibrating · %1$d / %2$d ranked match</item>
         <item quantity="other">Calibrating · %1$d / %2$d ranked matches</item>
     </plurals>
+
+    <string name="profile_design_system_demo_open">Design system demo</string>
+
+    <string name="design_system_demo_title">Design System Demo</string>
+    <string name="design_system_demo_back">Back</string>
+    <string name="design_system_demo_current_brand">Current brand</string>
+    <string name="design_system_demo_swatches_label">Active color scheme</string>
+    <string name="design_system_demo_switch_label">Switch palette (simulates a server-driven token update)</string>
+    <string name="design_system_demo_reset">Reset to default</string>
+    <string name="design_system_demo_widgets_title">Widgets catalog</string>
+    <string name="design_system_demo_primary_button">Primary action</string>
+    <string name="design_system_demo_secondary_button">Secondary action</string>
+    <string name="design_system_demo_appcard_title">AppCard example</string>
+    <string name="design_system_demo_appcard_body">All widgets read MaterialTheme.colorScheme.* — they react automatically when the resolver swaps tokens.</string>
+    <string name="design_system_demo_empty_title">Empty state example</string>
+    <string name="design_system_demo_empty_body">A single shared component replaces the inline empty state every feature builds today.</string>
 </resources>

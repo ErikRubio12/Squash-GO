@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,6 +14,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.egr.squashgo.core.designsystem.theme.LocalThemeResolverComposition
 import com.egr.squashgo.core.designsystem.theme.SquashGoTheme
 import com.egr.squashgo.feature.discover.api.CourtListRoute
 import com.egr.squashgo.feature.discover.impl.navigation.discoverGraph
@@ -31,28 +33,44 @@ import com.egr.squashgo.feature.shell.impl.model.BootstrapState
 fun SquashGoApp(
     deepLinkUri: Uri? = null,
     bootstrapViewModel: AppBootstrapViewModel = hiltViewModel(),
+    themeViewModel: ThemeRootViewModel = hiltViewModel(),
 ) {
-    SquashGoTheme {
-        val bootstrapState by bootstrapViewModel.state.collectAsStateWithLifecycle()
-
-        when (bootstrapState) {
-            BootstrapState.Loading -> LoadingScreen()
-            BootstrapState.Ready -> AppNavGraph(
+    CompositionLocalProvider(
+        LocalThemeResolverComposition provides themeViewModel.resolver,
+    ) {
+        SquashGoTheme {
+            AppContent(
                 deepLinkUri = deepLinkUri,
-                startDestination = CourtListRoute,
-                onLogout = bootstrapViewModel::logout,
-            )
-            BootstrapState.NeedsOnboarding -> AppNavGraph(
-                deepLinkUri = deepLinkUri,
-                startDestination = ProfileSetupRoute,
-                onLogout = bootstrapViewModel::logout,
-            )
-            BootstrapState.NeedsLogin -> AppNavGraph(
-                deepLinkUri = deepLinkUri,
-                startDestination = LoginRoute,
-                onLogout = bootstrapViewModel::logout,
+                bootstrapViewModel = bootstrapViewModel,
             )
         }
+    }
+}
+
+@Composable
+private fun AppContent(
+    deepLinkUri: Uri?,
+    bootstrapViewModel: AppBootstrapViewModel,
+) {
+    val bootstrapState by bootstrapViewModel.state.collectAsStateWithLifecycle()
+
+    when (bootstrapState) {
+        BootstrapState.Loading -> LoadingScreen()
+        BootstrapState.Ready -> AppNavGraph(
+            deepLinkUri = deepLinkUri,
+            startDestination = CourtListRoute,
+            onLogout = bootstrapViewModel::logout,
+        )
+        BootstrapState.NeedsOnboarding -> AppNavGraph(
+            deepLinkUri = deepLinkUri,
+            startDestination = ProfileSetupRoute,
+            onLogout = bootstrapViewModel::logout,
+        )
+        BootstrapState.NeedsLogin -> AppNavGraph(
+            deepLinkUri = deepLinkUri,
+            startDestination = LoginRoute,
+            onLogout = bootstrapViewModel::logout,
+        )
     }
 }
 
@@ -81,7 +99,7 @@ private fun AppNavGraph(
 
             discoverGraph(navController)
             playGraph(navController)
-            profileGraph(onLogout = onLogout)
+            profileGraph(navController = navController, onLogout = onLogout)
             activityGraph(navController)
         }
     }

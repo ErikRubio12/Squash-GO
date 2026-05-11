@@ -19,4 +19,20 @@
         <item quantity="one">Calibrando · %1$d / %2$d partido clasificatorio</item>
         <item quantity="other">Calibrando · %1$d / %2$d partidos clasificatorios</item>
     </plurals>
+
+    <string name="profile_design_system_demo_open">Demo del Design System</string>
+
+    <string name="design_system_demo_title">Demo del Design System</string>
+    <string name="design_system_demo_back">Volver</string>
+    <string name="design_system_demo_current_brand">Marca activa</string>
+    <string name="design_system_demo_swatches_label">Esquema de color activo</string>
+    <string name="design_system_demo_switch_label">Cambiar paleta (simula tokens enviados desde el servidor)</string>
+    <string name="design_system_demo_reset">Restablecer</string>
+    <string name="design_system_demo_widgets_title">Catálogo de widgets</string>
+    <string name="design_system_demo_primary_button">Acción principal</string>
+    <string name="design_system_demo_secondary_button">Acción secundaria</string>
+    <string name="design_system_demo_appcard_title">Ejemplo de AppCard</string>
+    <string name="design_system_demo_appcard_body">Todos los widgets leen MaterialTheme.colorScheme.* — reaccionan automáticamente cuando el resolver cambia los tokens.</string>
+    <string name="design_system_demo_empty_title">Ejemplo de estado vacío</string>
+    <string name="design_system_demo_empty_body">Un único componente compartido reemplaza el estado vacío que hoy cada feature implementa por su cuenta.</string>
 </resources>

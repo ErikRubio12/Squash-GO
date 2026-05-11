@@ -4,3 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 object ProfileRoute
+
+@Serializable
+object DesignSystemDemoRoute
