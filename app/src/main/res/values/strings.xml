@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">SquashGo</string>
+
+    <!-- Notification channel -->
+    <string name="notif_channel_match_play_name">Match play</string>
+    <string name="notif_channel_match_play_desc">Challenges, results and rating updates.</string>
+
+    <!-- Per-type title/body. %1$s = display name, %1$d = numeric value (e.g. Elo). -->
+    <string name="notif_challenge_created_title">New challenge</string>
+    <string name="notif_challenge_created_body">%1$s challenged you to a match.</string>
+
+    <string name="notif_challenge_accepted_title">Challenge accepted</string>
+    <string name="notif_challenge_accepted_body">%1$s accepted your challenge.</string>
+
+    <string name="notif_challenge_declined_title">Challenge declined</string>
+    <string name="notif_challenge_declined_body">%1$s declined your challenge.</string>
+
+    <string name="notif_challenge_cancelled_title">Challenge cancelled</string>
+    <string name="notif_challenge_cancelled_body">%1$s cancelled the challenge.</string>
+
+    <string name="notif_match_result_submitted_title">Result submitted</string>
+    <string name="notif_match_result_submitted_body">%1$s submitted a match result. You have 72h to confirm or dispute.</string>
+
+    <string name="notif_match_confirmed_title">Match confirmed</string>
+    <string name="notif_match_confirmed_body">Your match is confirmed. New Elo: %1$d.</string>
+
+    <string name="notif_match_disputed_title">Match disputed</string>
+    <string name="notif_match_disputed_body">%1$s disputed the match result.</string>
+
+    <string name="notif_match_auto_confirmed_title">Match auto-confirmed</string>
+    <string name="notif_match_auto_confirmed_body">No response within 72h. The result was auto-confirmed.</string>
+
+    <!-- Fallbacks when a payload field is missing -->
+    <string name="notif_fallback_opponent">Your opponent</string>
 </resources>

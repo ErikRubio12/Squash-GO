@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "654554794253",
+    "project_id": "suqashgo",
+    "storage_bucket": "suqashgo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654554794253:android:0dde3a9d4b3259d5e04844",
+        "android_client_info": {
+          "package_name": "com.egr.squashgo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLP9YGvf9BGaruXCu11e7ske0Ak5Zij_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

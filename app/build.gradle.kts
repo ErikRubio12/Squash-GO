@@ -5,6 +5,7 @@ plugins {
     id("squashgo.hilt")
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.google.services)
 }
 
 val localProperties = Properties().apply {
@@ -69,6 +70,10 @@ dependencies {
     // Data
     implementation(projects.data.network)
     implementation(projects.data.network.di)
+
+    // Firebase (FCM push notifications)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging.ktx)
 
     // Feature APIs
     implementation(projects.feature.onboarding.api)

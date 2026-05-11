@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">SquashGo</string>
+
+    <string name="notif_channel_match_play_name">Partidos</string>
+    <string name="notif_channel_match_play_desc">Desafíos, resultados y actualizaciones de rating.</string>
+
+    <string name="notif_challenge_created_title">Nuevo desafío</string>
+    <string name="notif_challenge_created_body">%1$s te desafió a un partido.</string>
+
+    <string name="notif_challenge_accepted_title">Desafío aceptado</string>
+    <string name="notif_challenge_accepted_body">%1$s aceptó tu desafío.</string>
+
+    <string name="notif_challenge_declined_title">Desafío rechazado</string>
+    <string name="notif_challenge_declined_body">%1$s rechazó tu desafío.</string>
+
+    <string name="notif_challenge_cancelled_title">Desafío cancelado</string>
+    <string name="notif_challenge_cancelled_body">%1$s canceló el desafío.</string>
+
+    <string name="notif_match_result_submitted_title">Resultado enviado</string>
+    <string name="notif_match_result_submitted_body">%1$s envió un resultado. Tienes 72h para confirmar o disputar.</string>
+
+    <string name="notif_match_confirmed_title">Partido confirmado</string>
+    <string name="notif_match_confirmed_body">Tu partido fue confirmado. Nuevo Elo: %1$d.</string>
+
+    <string name="notif_match_disputed_title">Partido disputado</string>
+    <string name="notif_match_disputed_body">%1$s disputó el resultado.</string>
+
+    <string name="notif_match_auto_confirmed_title">Confirmación automática</string>
+    <string name="notif_match_auto_confirmed_body">Sin respuesta en 72h. El resultado se confirmó automáticamente.</string>
+
+    <string name="notif_fallback_opponent">Tu oponente</string>
+</resources>

@@ -6,6 +6,7 @@ import com.egr.squashgo.data.network.api.CourtApi
 import com.egr.squashgo.data.network.api.EdgeFunctionApi
 import com.egr.squashgo.data.network.api.MatchApi
 import com.egr.squashgo.data.network.api.PlayerApi
+import com.egr.squashgo.data.network.api.PushTokenApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,4 +41,8 @@ object ApiModule {
     @Provides
     @Singleton
     fun provideEdgeFunctionApi(client: HttpClient): EdgeFunctionApi = EdgeFunctionApi(client)
+
+    @Provides
+    @Singleton
+    fun providePushTokenApi(client: HttpClient): PushTokenApi = PushTokenApi(client)
 }
