@@ -1,6 +1,8 @@
 package com.egr.squashgo.messaging
 
+import android.Manifest
 import android.util.Log
+import androidx.annotation.RequiresPermission
 import com.egr.squashgo.core.model.NotificationType
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -14,6 +16,7 @@ class SquashGoMessagingService : FirebaseMessagingService() {
         // returns from then on. A foreground refresh is a follow-up.
     }
 
+    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     override fun onMessageReceived(message: RemoteMessage) {
         Log.d(TAG, "onMessageReceived: data=${message.data}")
         val type = NotificationType.fromKey(message.data["type"])

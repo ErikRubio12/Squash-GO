@@ -35,4 +35,9 @@
     <string name="design_system_demo_appcard_body">All widgets read MaterialTheme.colorScheme.* — they react automatically when the resolver swaps tokens.</string>
     <string name="design_system_demo_empty_title">Empty state example</string>
     <string name="design_system_demo_empty_body">A single shared component replaces the inline empty state every feature builds today.</string>
+
+    <string name="design_system_demo_remote_section_label">Remote sync (simulated)</string>
+    <string name="design_system_demo_remote_section_body">Tap to simulate a 1.5s network call that returns the next active palette. Same code path as a real HTTP/Supabase impl — only the binding in DesignSystemModule changes.</string>
+    <string name="design_system_demo_remote_fetch">Fetch latest from server</string>
+    <string name="design_system_demo_remote_syncing">Syncing…</string>
 </resources>

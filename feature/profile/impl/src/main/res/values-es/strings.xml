@@ -35,4 +35,9 @@
     <string name="design_system_demo_appcard_body">Todos los widgets leen MaterialTheme.colorScheme.* — reaccionan automáticamente cuando el resolver cambia los tokens.</string>
     <string name="design_system_demo_empty_title">Ejemplo de estado vacío</string>
     <string name="design_system_demo_empty_body">Un único componente compartido reemplaza el estado vacío que hoy cada feature implementa por su cuenta.</string>
+
+    <string name="design_system_demo_remote_section_label">Sincronización remota (simulada)</string>
+    <string name="design_system_demo_remote_section_body">Tap para simular una llamada de red de 1.5s que devuelve la siguiente paleta activa. Mismo flujo que tendría una impl HTTP/Supabase real — solo cambia el binding en DesignSystemModule.</string>
+    <string name="design_system_demo_remote_fetch">Traer última del servidor</string>
+    <string name="design_system_demo_remote_syncing">Sincronizando…</string>
 </resources>

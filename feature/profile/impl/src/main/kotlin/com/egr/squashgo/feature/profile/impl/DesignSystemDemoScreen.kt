@@ -79,6 +79,7 @@ fun DesignSystemDemoScreen(
             item { CurrentBrandHeader(brandName = tokens.brandName) }
             item { ColorSwatchesRow() }
             item { PaletteSwitcherSection(viewModel) }
+            item { RemoteSyncSection(viewModel) }
             item { WidgetsCatalogHeader() }
             item { PrimaryButtonSample() }
             item { SecondaryButtonSample() }
@@ -183,6 +184,33 @@ private fun PaletteSwitcherSection(viewModel: DesignSystemDemoViewModel) {
         SecondaryButton(
             text = stringResource(R.string.design_system_demo_reset),
             onClick = viewModel::reset,
+        )
+    }
+}
+
+@Composable
+private fun RemoteSyncSection(viewModel: DesignSystemDemoViewModel) {
+    val isSyncing by viewModel.isSyncing
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(
+            text = stringResource(R.string.design_system_demo_remote_section_label),
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+        Text(
+            text = stringResource(R.string.design_system_demo_remote_section_body),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        PrimaryButton(
+            text = if (isSyncing) {
+                stringResource(R.string.design_system_demo_remote_syncing)
+            } else {
+                stringResource(R.string.design_system_demo_remote_fetch)
+            },
+            onClick = viewModel::fetchFromRemote,
+            enabled = !isSyncing,
         )
     }
 }

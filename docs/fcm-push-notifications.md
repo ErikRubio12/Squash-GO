@@ -292,19 +292,19 @@ supabase functions deploy send-notification --no-verify-jwt
 
 ## 6. Implementation order (one PR per step, mergeable independently)
 
-1. **Migration 007** — `push_tokens` table + RLS. No client changes; safe to land first.
-2. **Edge Function `send-notification` + secret config** — deployed, callable but unused. Smoke-test by curl.
-3. **Android skeleton**: Firebase deps, `google-services.json`, `SquashGoMessagingService` (just logs `onNewToken`). Verify token registration manually.
-4. **`PushTokenApi` + `PushTokenRepository` + DI wiring**, plus the `PushTokenRegistrar` call from `AppBootstrapViewModel` post-Ready and the DELETE on logout.
-5. **`NotificationRenderer` + channel + `core:notifications` strings (en/es)** — render a hardcoded test notification on `onMessageReceived`.
-6. **Migration 008 — challenges trigger** + plumbing to call `send-notification`. End-to-end test with two accounts.
+**Progress as of 2026-05-10**: steps 1–5 shipped end-to-end (smoke-tested: curl → cloud send-notification → device renders localized notification). Next: step 6.
+
+1. ✅ **Migration 007** — `push_tokens` schema fix (UNIQUE on token, last_seen_at, locale, UPDATE policy). Applied on cloud.
+2. ✅ **Edge Function `send-notification`** — deployed to cloud with secrets configured. Structured error codes (no string-matching). Returns `{success, delivered, pruned, error?}`.
+3. ✅ **Android skeleton** — Firebase BOM + messaging-ktx, `google-services.json` in `:app/`, `SquashGoMessagingService` registered in manifest, `POST_NOTIFICATIONS` permission declared.
+4. ✅ **`PushTokenApi` + `PushTokenRepository` + DI wiring**: `FcmTokenProvider` interface in `:core:auth`, impl in `:app`. `AppBootstrapViewModel` registers token on Ready and DELETEs on logout (before `clearSession`).
+5. ✅ **`NotificationRenderer` + channel + strings (en/es)** — `NotificationType` enum lives in `:core:model` (KMP-ready for iOS). Channel `match_play` registered from `SquashGoApplication.onCreate`. Renderer handles all 8 types, falls back to `notif_fallback_opponent` when name field missing.
+6. ⏳ **Next — Migration 008: challenges trigger**. Postgres trigger AFTER INSERT/UPDATE on `challenges` that calls `send-notification` via `pg_net.http_post`. Needs `app.send_notification_url` + `app.internal_fn_secret` as Postgres custom config (one-time seed in dashboard). End-to-end test with two real accounts.
 7. **Migration 009 — matches trigger (`result_submitted`)** + `MATCH_RESULT_SUBMITTED` rendering + deep link.
 8. **Extend `confirm-match`, `dispute-match`, `auto_accept_pending_matches`** to fire `MATCH_CONFIRMED` / `MATCH_DISPUTED` / `MATCH_AUTO_CONFIRMED`.
 9. **Deep-link handler** for the new push schemes in `MainActivity`.
-10. **POST_NOTIFICATIONS permission UX** + rejection handling.
+10. **POST_NOTIFICATIONS permission UX** + rejection handling (today granted manually via `adb shell pm grant ...`).
 11. **QA pass** — see §8.
-
-Steps 1–2 are server-only. Step 3 unblocks parallel work between client and server.
 
 ## 7. Security & failure modes
 
